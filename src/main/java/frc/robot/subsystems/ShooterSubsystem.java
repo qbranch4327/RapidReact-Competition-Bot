@@ -1,25 +1,29 @@
 package frc.robot.subsystems;
-import edu.wpi.first.wpilibj.VictorSP;
 
+import frc.robot.commands.*;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX; 
 
 public class ShooterSubsystem {
-    private final edu.wpi.first.wpilibj.motorcontrol.VictorSP turret;
+    public static final double PlaceDistance = 0.1;
+    public static final double BackAwayDistance = 0.6;
 
-    public ShooterSubsystem(VictorSP turret){
-        this.turret = turret;
+    private PWMVictorSPX shooter;
+    private MotorControllerGroup shooterMotor;
+    private DifferentialDrive drive;
+    private Encoder shooterEncoder;
+    private AnalogGyro gyro;
+    private AnalogInput rangefinder;
+
+    public ShooterSubsystem(){
+        
     }
-
-    public void clockwise(){ //will insert info from vision system to parameters
-        turret.set(speed);
-        //speed to be determined
-        //when encoder reaches blank from vision system
-        turret.stopMotor();
-    }
-
-    public void counterclockwise(){ //will insert info from vision system to parameters
-        turret.set(-speed);//tbd
-        //when encoder reaches blank
-        turret.stopMotor();
-    }
-
 }
