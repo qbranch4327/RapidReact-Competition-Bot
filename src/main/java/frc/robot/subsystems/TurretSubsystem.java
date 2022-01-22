@@ -10,22 +10,28 @@ import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
 
-public class Turret {
-    public ShooterSubsystem(Falcon turret){
-        this.turret = turret;
+import frc.Hardware.MotorConfigUtils;
+import frc.Hardware.QTalonFX;
+
+public class TurretSubsystem {
+    private QTalonFX turretMotor = new QTalonFX(6, 111, MotorConfigUtils.POSITION_SLOT_IDX, MotorConfigUtils.VELOCITY_SLOT_IDX);
+    //update ticks per inch to actual number when recieved from Mr. Burdette
+
+    public TurretSubsystem(QTalonFX turret){
+        //this.turret = turret;
     }
 
     public void clockwise(){ //will insert info from vision system to parameters
-        turret.set(speed);
+        //turret.set(speed);
         //speed to be determined
         //when encoder reaches blank from vision system
-        turret.stopMotor();
+        //turret.stopMotor();
     }
 
     public void counterclockwise(){ //will insert info from vision system to parameters
-        turret.set(-speed);//tbd
+        //turret.set(-speed);//tbd
         //when encoder reaches blank
-        turret.stopMotor();
+        //turret.stopMotor();
     }
 
 }

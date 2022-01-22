@@ -1,9 +1,11 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.math.system.plant.DCMotor;
-import edu.wpi.first.motorcontrol.MotorController;
-import edu.wpi.first.SpeedController;
+//import edu.wpi.first.motorcontrol.MotorController;
+//import edu.wpi.first.SpeedController;
 import java.lang.AutoCloseable;
+
+import com.revrobotics.CANSparkMax;
 
 public class IntakeSubsystem {
     private final CANSparkMax armMotor;

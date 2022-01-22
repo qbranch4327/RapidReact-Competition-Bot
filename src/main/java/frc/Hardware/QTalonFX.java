@@ -1,4 +1,4 @@
-package org.team1540.robot2020.utils;
+package frc.Hardware;
 
 import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -6,7 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 public class QTalonFX extends TalonFX {
     private final double decisecondsPerSecond = 10;
-    private double ticksPerMeter;
+    private double ticksPerInch;
     private double saturationVoltage = 12;
     private int velocitySlotIdx;
     private int positionSlotIdx;
@@ -17,19 +17,19 @@ public class QTalonFX extends TalonFX {
      *
      * @param deviceNumber [0,62]
      */
-    public QTalonFX(int deviceNumber, double ticksPerMeter, int velocitySlotIdx, int positionSlotIdx) {
+    public QTalonFX(int deviceNumber, double ticksPerInch, int velocitySlotIdx, int positionSlotIdx) {
         super(deviceNumber);
-        this.ticksPerMeter = ticksPerMeter;
+        this.ticksPerInch = ticksPerInch;
         this.velocitySlotIdx = velocitySlotIdx;
         this.positionSlotIdx = positionSlotIdx;
     }
 
     public double getDistanceMeters() {
-        return (double) this.getSelectedSensorPosition() / ticksPerMeter;
+        return (double) this.getSelectedSensorPosition() / ticksPerInch;
     }
 
     public double getRateMetersPerSecond() {
-        return (double) this.getSelectedSensorVelocity() * decisecondsPerSecond / ticksPerMeter;
+        return (double) this.getSelectedSensorVelocity() * decisecondsPerSecond / ticksPerInch;
     }
 
     public void setPercent(double percent) {
@@ -38,12 +38,12 @@ public class QTalonFX extends TalonFX {
 
     public void setVelocityMetersPerSecond(double velocityMetersPerSecond) {
         if (lastSlot != velocitySlotIdx) selectProfileSlot(velocitySlotIdx, 0);
-        this.set(ControlMode.Velocity, velocityMetersPerSecond * ticksPerMeter / decisecondsPerSecond);
+        this.set(ControlMode.Velocity, velocityMetersPerSecond * ticksPerInch / decisecondsPerSecond);
     }
 
     public void setPositionMeters(double positionMeters) {
         if (lastSlot != positionSlotIdx) selectProfileSlot(positionSlotIdx, 0);
-        this.set(ControlMode.Position, positionMeters * ticksPerMeter);
+        this.set(ControlMode.Position, positionMeters * ticksPerInch);
     }
 
     public void setVoltage(double voltage) {

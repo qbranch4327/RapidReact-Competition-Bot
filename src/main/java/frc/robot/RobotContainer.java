@@ -8,9 +8,13 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.DriveCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -19,10 +23,11 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final XboxController controller = new XboxController(0);
+  private final DrivetrainSubsystem driveTrain = new DrivetrainSubsystem();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  // The robot's subsystems and commands are defined here...
+
   private final NetworkTableInstance Instance = NetworkTableInstance.getDefault();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -32,6 +37,9 @@ public class RobotContainer {
     double targetArea = table.getEntry("ta").getDouble(0);
     double targetSkew = table.getEntry("ts").getDouble(0);
     configureButtonBindings();
+
+    driveTrain.setDefaultCommand(new DriveCommand(driveTrain,controller));
+  
   }
 
   /**

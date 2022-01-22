@@ -10,6 +10,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
 
-public class Climber {
+public class ClimberSubsystem {
     
 }
