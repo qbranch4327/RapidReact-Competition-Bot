@@ -1,15 +1,19 @@
 package frc.robot.subsystems;
 
-import frc.robot.commands.*;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
-import com.ctre.phoenix.sensors.CANCoder;
-import com.ctre.phoenix.sensors.CANCoderConfiguration;
+import frc.Hardware.QTalonFX;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.Hardware.MotorConfigUtils;
 
-public class ClimberSubsystem {
-    
+public class ClimberSubsystem extends SubsystemBase{
+    private QTalonFX climbmotor = new QTalonFX(7, 0, MotorConfigUtils.POSITION_SLOT_IDX, MotorConfigUtils.VELOCITY_SLOT_IDX);//slot tbd (first parameter)
+    private final double deadzone = .2;
+
+    public void setspeed(double climbSpeedUp, double climbSpeedDown){
+        if (climbSpeedUp > deadzone){
+            climbmotor.setPercent(climbSpeedUp);
+        }
+        if (Math.abs(climbSpeedDown) > deadzone){
+            climbmotor.setPercent(climbSpeedDown);
+        }
+    }
 }
