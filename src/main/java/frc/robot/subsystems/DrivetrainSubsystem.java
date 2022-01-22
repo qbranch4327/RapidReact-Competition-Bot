@@ -13,12 +13,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     private QTalonFX driveMotorRightA = new QTalonFX(3, 434.68, MotorConfigUtils.POSITION_SLOT_IDX, MotorConfigUtils.VELOCITY_SLOT_IDX);
     private QTalonFX driveMotorRightB = new QTalonFX(4, 434.68, MotorConfigUtils.POSITION_SLOT_IDX, MotorConfigUtils.VELOCITY_SLOT_IDX);
-
+    //slots tbd (first parameter for QTalonFX declarations)
     private QTalonFX[] driveMotorLefts = new QTalonFX[]{driveMotorLeftA,driveMotorLeftB};
     private QTalonFX[] driveMotorRights = new QTalonFX[]{driveMotorRightA,driveMotorRightB};
 
     private final double deadzone = 0.2;
-    //for when we create our own falcon class
 
     public void setSpeed(double rightSpeed, double leftSpeed){
         for (var motor : driveMotorLefts){

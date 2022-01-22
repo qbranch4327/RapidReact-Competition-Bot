@@ -8,13 +8,12 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.IntakeCommand;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.ExampleSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.DriveCommand;
+import frc.robot.subsystems.IntakeSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -25,6 +24,8 @@ import frc.robot.commands.DriveCommand;
 public class RobotContainer {
   private final XboxController controller = new XboxController(0);
   private final DrivetrainSubsystem driveTrain = new DrivetrainSubsystem();
+  private final ClimberSubsystem climber = new ClimberSubsystem();
+  private final IntakeSubsystem intake = new IntakeSubsystem();
 
   // The robot's subsystems and commands are defined here...
 
@@ -39,6 +40,9 @@ public class RobotContainer {
     configureButtonBindings();
 
     driveTrain.setDefaultCommand(new DriveCommand(driveTrain,controller));
+    climber.setDefaultCommand(new ClimbCommand(climber, controller));
+    intake.setDefaultCommand(new IntakeCommand(intake, controller));
+
   
   }
 
@@ -55,8 +59,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
-  }
+  // public Command getAutonomousCommand() {
+  //   // An ExampleCommand will run in autonomous
+  //   return m_autoCommand;
+  // }
 }
