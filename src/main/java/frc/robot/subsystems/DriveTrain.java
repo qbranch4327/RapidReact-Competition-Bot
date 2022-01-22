@@ -28,4 +28,8 @@ public class Drivetrain extends SubsystemBase {
     private QTalconFX[] driveMotorRights = new QTalcon[]{driveMotorRightA,driveMotorRightB};
     //for when we create our own falcon class
 
+    public void setSpeed(rightSpeed, leftSpeed){
+        
+    }
+
 }
