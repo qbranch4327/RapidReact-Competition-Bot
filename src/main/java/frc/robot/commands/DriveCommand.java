@@ -16,8 +16,8 @@ public class DriveCommand extends CommandBase {
 
     @Override
     public void execute(){
-        double percentLeft = controller.getRightY();
-        double percentRight = controller.getLeftY();
+        double percentLeft = controller.getLeftY();
+        double percentRight = controller.getRightY();
         this.drivetrain.setSpeed(percentLeft,-percentRight);
     }
 }
