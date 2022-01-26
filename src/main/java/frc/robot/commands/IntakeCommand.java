@@ -11,6 +11,7 @@ public class IntakeCommand extends CommandBase {
     public IntakeCommand(IntakeSubsystem intake, XboxController controller){
         this.controller = controller;
         this.intake = intake;
+        addRequirements(intake);
     }
 
     @Override

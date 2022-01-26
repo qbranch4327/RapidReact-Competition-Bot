@@ -11,6 +11,7 @@ public class ClimbCommand extends CommandBase {
     public ClimbCommand(ClimberSubsystem climber, XboxController controller){
         this.climber = climber;
         this.controller = controller;
+        addRequirements(climber);
     }
 
     @Override

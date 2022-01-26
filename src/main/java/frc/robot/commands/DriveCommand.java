@@ -11,12 +11,13 @@ public class DriveCommand extends CommandBase {
     public DriveCommand(DrivetrainSubsystem drivetrain, XboxController controller){
         this.drivetrain = drivetrain;
         this.controller = controller;
+        addRequirements(drivetrain);
     }
 
     @Override
     public void execute(){
-        var percentLeft = controller.getLeftY();
-        var percentRight = controller.getRightY();
-        this.drivetrain.setSpeed(percentLeft,percentRight);
+        double percentLeft = controller.getRightY();
+        double percentRight = controller.getLeftY();
+        this.drivetrain.setSpeed(percentLeft,-percentRight);
     }
 }
