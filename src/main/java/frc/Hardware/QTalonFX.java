@@ -17,7 +17,7 @@ public class QTalonFX extends TalonFX {
      *
      * @param deviceNumber [0,62]
      */
-    public QTalonFX(int deviceNumber, double ticksPerInch, int velocitySlotIdx, int positionSlotIdx) {
+    public QTalonFX(int deviceNumber, double ticksPerInch, int positionSlotIdx, int velocitySlotIdx) {
         super(deviceNumber);
         this.ticksPerInch = ticksPerInch;
         this.velocitySlotIdx = velocitySlotIdx;
