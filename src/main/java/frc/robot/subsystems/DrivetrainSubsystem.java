@@ -22,7 +22,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     public void setSpeed(double rightSpeed, double leftSpeed){
         for (var motor : driveMotorLefts){
             if (Math.abs(leftSpeed) > deadzone){
-                motor.setPercent(rightSpeed);
+                motor.setPercent(leftSpeed);
             }            
             else{
                 motor.setPercent(0);
@@ -31,7 +31,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
         
         for (var motor : driveMotorRights){
             if (Math.abs(rightSpeed) > deadzone){
-                motor.setPercent(rightSpeed);
+                motor.setPercent(-rightSpeed);
             }
             else{
                 motor.setPercent(0);

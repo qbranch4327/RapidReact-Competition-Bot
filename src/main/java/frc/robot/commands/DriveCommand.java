@@ -18,6 +18,6 @@ public class DriveCommand extends CommandBase {
     public void execute(){
         double percentLeft = controller.getLeftY();
         double percentRight = controller.getRightY();
-        this.drivetrain.setSpeed(percentLeft,-percentRight);
+        this.drivetrain.setSpeed(percentLeft,percentRight);
     }
 }
