@@ -8,9 +8,11 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.DriveDistanceCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -26,6 +28,8 @@ public class RobotContainer {
   private final DrivetrainSubsystem driveTrain = new DrivetrainSubsystem();
   private final ClimberSubsystem climber = new ClimberSubsystem();
   private final IntakeSubsystem intake = new IntakeSubsystem();
+  private final Command m_autoCommand = new DriveDistanceCommand(driveTrain, 1000);
+
 
   // The robot's subsystems and commands are defined here...
 
@@ -43,7 +47,6 @@ public class RobotContainer {
     climber.setDefaultCommand(new ClimbCommand(climber, controller));
     intake.setDefaultCommand(new IntakeCommand(intake, controller));
 
-  
   }
 
   /**

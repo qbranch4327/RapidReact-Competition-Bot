@@ -16,12 +16,17 @@ public class DriveDistanceCommand extends CommandBase{
         this.distance = distance;
         this.leftEncoder = new Encoder(0,1);
         this.rightEncoder = new Encoder(2,3);
+        addRequirements(drive);
 
     }
     @Override
     public void initialize() {
         this.leftEncoder.reset();
         this.rightEncoder.reset();
+    }
+
+    @Override
+    public void execute(){
         drive.setSpeed(0.2, 0.2);
     }
 
