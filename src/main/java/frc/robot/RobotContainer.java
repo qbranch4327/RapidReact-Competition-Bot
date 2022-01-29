@@ -43,7 +43,7 @@ public class RobotContainer {
     double targetSkew = table.getEntry("ts").getDouble(0);
     configureButtonBindings();
 
-    driveTrain.setDefaultCommand(new DriveCommand(driveTrain,controller));
+    driveTrain.setDefaultCommand(new DriveCommand(driveTrain, controller));
     climber.setDefaultCommand(new ClimbCommand(climber, controller));
     intake.setDefaultCommand(new IntakeCommand(intake, controller));
 
@@ -63,6 +63,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
+    System.out.println("RobotContainer getAutonomousCommand: " + m_autoCommand);
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
