@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
@@ -23,11 +24,12 @@ public class DriveDistanceCommand extends CommandBase{
     public void initialize() {
         this.leftEncoder.reset();
         this.rightEncoder.reset();
+        drive.setSpeed(0.2, 0.2);
     }
 
     @Override
     public void execute(){
-        drive.setSpeed(0.2, 0.2);
+        
     }
 
     @Override
@@ -36,7 +38,7 @@ public class DriveDistanceCommand extends CommandBase{
        var leftDistance = this.leftEncoder.getDistance();
        var rightDistance = this.rightEncoder.getDistance();
 
-        return leftDistance >= this.distance || rightDistance >= this.distance;
+        return false; // leftDistance >= this.distance || rightDistance >= this.distance;
     }
 
 }

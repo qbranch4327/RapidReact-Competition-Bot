@@ -28,7 +28,7 @@ public class RobotContainer {
   private final DrivetrainSubsystem driveTrain = new DrivetrainSubsystem();
   private final ClimberSubsystem climber = new ClimberSubsystem();
   private final IntakeSubsystem intake = new IntakeSubsystem();
-  private final Command m_autoCommand = new DriveDistanceCommand(driveTrain, 1000);
+  private final Command m_autoCommand = new DriveDistanceCommand(driveTrain, 100000);
 
 
   // The robot's subsystems and commands are defined here...
