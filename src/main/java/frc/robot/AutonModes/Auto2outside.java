@@ -8,23 +8,23 @@ import frc.robot.subsystems.DrivetrainSubsystem;
  * A complex auto command that drives forward, releases a hatch, and then drives
  * backward.
  */
-public class Auto3 extends SequentialCommandGroup {
+public class Auto2outside extends SequentialCommandGroup {
     /**
      * Creates a new ComplexAuto.
      *
      * @param drive The drive subsystem this command will run on
      * @param hatch The hatch subsystem this command will run on
      */
-    public Auto3(DrivetrainSubsystem drive) {
+    public Auto2outside(DrivetrainSubsystem drive) {
         addCommands(
                 //  forward zoomies the specified distance
-                new DriveDistanceCommand(drive, 72),
+                new DriveDistanceCommand(drive, 12),
 
                 // Spinnies
               //  new SpinDegrees(),
 
                 //  backward zoomies the specified distance
-                new DriveDistanceCommand(drive, 72)
+                new DriveDistanceCommand(drive, -12)
                 
                 );
     }

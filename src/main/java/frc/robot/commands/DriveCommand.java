@@ -18,6 +18,7 @@ public class DriveCommand extends CommandBase {
     public void execute(){
         var percentLeft = controller.getLeftY();
         var percentRight = controller.getRightY();
+        this.drivetrain.publishToDashboard();
         this.drivetrain.setSpeed(percentRight,percentLeft);
     }
 }

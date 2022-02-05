@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 
 import frc.Hardware.QTalonFX;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DrivetrainSubsystem extends SubsystemBase {
@@ -74,5 +75,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     public double getRightEncoderDistanceInches() {
         return this.rightEncoder.getDistance();
+    }
+
+    public void publishToDashboard() {
+        SmartDashboard.putNumber("rightEncoder", rightEncoder.getDistance());
+        SmartDashboard.putNumber("rightEncoder DPP", rightEncoder.getDistancePerPulse());
+        SmartDashboard.putNumber("leftEncoder", leftEncoder.getDistance());
+        SmartDashboard.putNumber("leftEncoder DPP", leftEncoder.getDistancePerPulse());
     }
 }
