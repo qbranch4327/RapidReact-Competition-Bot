@@ -1,21 +1,11 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.ClimbCommand;
+import frc.robot.AutonModes.Auto1;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.IntakeCommand;
-import frc.robot.commands.DriveDistanceCommand;
-import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -24,29 +14,20 @@ import frc.robot.subsystems.IntakeSubsystem;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  private final XboxController controller = new XboxController(0);
-  private final DrivetrainSubsystem driveTrain = new DrivetrainSubsystem();
-  private final ClimberSubsystem climber = new ClimberSubsystem();
-  private final IntakeSubsystem intake = new IntakeSubsystem();
-  private final Command m_autoCommand = new DriveDistanceCommand(driveTrain, 1000);
+  private final XboxController controller;
+  private final DrivetrainSubsystem driveTrain;
+  private final Command m_autoCommand;
 
 
   // The robot's subsystems and commands are defined here...
-
-  private final NetworkTableInstance Instance = NetworkTableInstance.getDefault();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    NetworkTable table = Instance.getTable("limelight");
-    double targetOffsetAngle_Horizontal = table.getEntry("tx").getDouble(0);
-    double targetOffsetAngle_Vertical = table.getEntry("ty").getDouble(0);
-    double targetArea = table.getEntry("ta").getDouble(0);
-    double targetSkew = table.getEntry("ts").getDouble(0);
-    configureButtonBindings();
-
+    this.controller = new XboxController(0);
+    this.driveTrain = new DrivetrainSubsystem();
+    this.m_autoCommand = new Auto1(driveTrain);
+    
     driveTrain.setDefaultCommand(new DriveCommand(driveTrain,controller));
-    climber.setDefaultCommand(new ClimbCommand(climber, controller));
-    intake.setDefaultCommand(new IntakeCommand(intake, controller));
-
+    configureButtonBindings();
   }
 
   /**
