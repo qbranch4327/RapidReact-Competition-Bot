@@ -18,12 +18,12 @@ public class Auto1 extends SequentialCommandGroup {
      */
     public Auto1(DrivetrainSubsystem drive) {
         addCommands(
-                // start intake
-                // forward to pick up ball
-                new DriveDistanceCommand(drive, 82.17),
-                // backwards
-                new DriveDistanceCommand(drive, -82.17)
-                 // shoot balls
+            // start intake
+            // forward to pick up ball
+            new DriveDistanceCommand(drive, 82.17),
+            // backwards
+            new DriveDistanceCommand(drive, -82.17)
+        // shoot balls
 
         );
     }

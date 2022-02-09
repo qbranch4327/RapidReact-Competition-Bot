@@ -2,7 +2,11 @@
 
 package frc.robot.subsystems;
 
-import frc.Hardware.QTalonFX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -10,18 +14,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class DrivetrainSubsystem extends SubsystemBase {
     private final int CYCLES_PER_REVOLUTION = 2048;
     private final double CIRCUMFERENCE = 6 * 3.14159;
-    private final double TICKS_PER_INCH = 434.68;
-    private final int POSITION_SLOT = 0;
-    private final int VELOCITY_SLOT = 1;
 
     // Set up drive motors
-    private QTalonFX driveMotorLeftA = new QTalonFX(1, TICKS_PER_INCH, POSITION_SLOT, VELOCITY_SLOT);
-    private QTalonFX driveMotorLeftB = new QTalonFX(2, TICKS_PER_INCH, POSITION_SLOT, VELOCITY_SLOT);
-    private QTalonFX driveMotorRightA = new QTalonFX(3, TICKS_PER_INCH, POSITION_SLOT, VELOCITY_SLOT);
-    private QTalonFX driveMotorRightB = new QTalonFX(4, TICKS_PER_INCH, POSITION_SLOT, VELOCITY_SLOT);
 
-    private QTalonFX[] driveMotorLefts = new QTalonFX[] { driveMotorLeftA, driveMotorLeftB };
-    private QTalonFX[] driveMotorRights = new QTalonFX[] { driveMotorRightA, driveMotorRightB };
+    private TalonFX driveMotorLeftA = new TalonFX(1);
+    private TalonFX driveMotorLeftB = new TalonFX(2);
+    private TalonFX driveMotorRightA = new TalonFX(3);
+    private TalonFX driveMotorRightB = new TalonFX(4);
 
     // Set up drive motor encoders
     private final Encoder leftEncoder = new Encoder(0, 1);
@@ -30,9 +29,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
     private final double deadzone = 0.0;
 
     public DrivetrainSubsystem() {
-        this.rightEncoder.setDistancePerPulse(CIRCUMFERENCE / CYCLES_PER_REVOLUTION);
-        this.leftEncoder.setDistancePerPulse(CIRCUMFERENCE / CYCLES_PER_REVOLUTION);
-
         this.rightEncoder.setMaxPeriod(1);
         this.leftEncoder.setMaxPeriod(1);
 
@@ -44,23 +40,34 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
         this.rightEncoder.setSamplesToAverage(5);
         this.leftEncoder.setSamplesToAverage(5);
+
+        driveMotorLeftA.setInverted(TalonFXInvertType.Clockwise);
+        driveMotorLeftA.setInverted(TalonFXInvertType.CounterClockwise);
+
+        driveMotorRightB.follow(driveMotorRightA);
+        driveMotorLeftB.follow(driveMotorLeftB);
+
+        driveMotorLeftB.setInverted(InvertType.FollowMaster);
+        driveMotorRightB.setInverted(InvertType.FollowMaster);
+
+        rightEncoder.setDistancePerPulse(CIRCUMFERENCE / CYCLES_PER_REVOLUTION);
+        leftEncoder.setDistancePerPulse(CIRCUMFERENCE / CYCLES_PER_REVOLUTION);
     }
 
     public void setSpeed(double rightSpeed, double leftSpeed) {
-        for (var motor : driveMotorLefts) {
-            if (Math.abs(leftSpeed) > deadzone) {
-                motor.setPercent(leftSpeed);
-            } else {
-                motor.setPercent(0);
-            }
+
+        if (Math.abs(rightSpeed) > deadzone) {
+            driveMotorRightA.set(ControlMode.PercentOutput, rightSpeed);
+        } 
+        else {
+            driveMotorRightA.set(ControlMode.PercentOutput, 0);
         }
 
-        for (var motor : driveMotorRights) {
-            if (Math.abs(rightSpeed) > deadzone) {
-                motor.setPercent(-rightSpeed);
-            } else {
-                motor.setPercent(0);
-            }
+        if (Math.abs(leftSpeed) > deadzone) {
+            driveMotorLeftA.set(ControlMode.PercentOutput, leftSpeed);
+        } 
+        else {
+            driveMotorLeftA.set(ControlMode.PercentOutput, 0);
         }
     }
 
