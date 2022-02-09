@@ -9,23 +9,23 @@ import frc.robot.subsystems.DrivetrainSubsystem;
  * backward.
  */
 public class Auto2outside extends SequentialCommandGroup {
-    /**
-     * Creates a new ComplexAuto.
-     *
-     * @param drive The drive subsystem this command will run on
-     * @param hatch The hatch subsystem this command will run on
-     */
-    public Auto2outside(DrivetrainSubsystem drive) {
-        addCommands(
-                //  forward zoomies the specified distance
-                new DriveDistanceCommand(drive, 12),
+  /**
+   * Creates a new ComplexAuto.
+   *
+   * @param drive The drive subsystem this command will run on
+   * @param hatch The hatch subsystem this command will run on
+   */
+  public Auto2outside(DrivetrainSubsystem drive) {
+    addCommands(
+        // forward zoomies the specified distance
+        new DriveDistanceCommand(drive, 12),
 
-                // Spinnies
-              //  new SpinDegrees(),
+        // Spinnies
+        // new SpinDegrees(),
 
-                //  backward zoomies the specified distance
-                new DriveDistanceCommand(drive, -12)
-                
-                );
-    }
+        // backward zoomies the specified distance
+        new DriveDistanceCommand(drive, -12)
+
+    );
+  }
 }

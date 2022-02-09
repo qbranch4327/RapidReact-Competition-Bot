@@ -4,8 +4,14 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.AutonModes.Auto1;
+import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.ShooterCommand;
+import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -16,7 +22,12 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 public class RobotContainer {
   private final XboxController controller;
   private final DrivetrainSubsystem driveTrain;
+  private final ClimbSubsystem climb;
+  private final IntakeSubsystem intake;
+  private final ShooterSubsystem shooter;
+  
   private final Command m_autoCommand;
+  
 
 
   // The robot's subsystems and commands are defined here...
@@ -24,9 +35,18 @@ public class RobotContainer {
   public RobotContainer() {
     this.controller = new XboxController(0);
     this.driveTrain = new DrivetrainSubsystem();
+    this.climb = new ClimbSubsystem();
+    this.intake = new IntakeSubsystem();
+    this.shooter = new ShooterSubsystem();
+    
     this.m_autoCommand = new Auto1(driveTrain);
     
     driveTrain.setDefaultCommand(new DriveCommand(driveTrain,controller));
+    climb.setDefaultCommand(new ClimbCommand(climb, controller));
+    intake.setDefaultCommand(new IntakeCommand(intake, controller));
+    shooter.setDefaultCommand(new ShooterCommand(shooter, controller));
+
+
     configureButtonBindings();
   }
 
