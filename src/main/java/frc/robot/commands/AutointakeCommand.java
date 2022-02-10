@@ -10,14 +10,14 @@ public class AutointakeCommand extends CommandBase {
         this.intake = intake;
     }
 
-    }
     @Override
     public void execute() {
         intake.intakeOn();
     }
     
     @Override
-    public void isFinished() {
+    public boolean isFinished() {
         intake.intakeOff();
+        return true;
     }
 }

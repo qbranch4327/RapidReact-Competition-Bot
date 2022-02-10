@@ -2,7 +2,7 @@ package frc.robot.AutonModes;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveDistanceCommand;
-import frc.robot.commands.Spinnies;
+//import frc.robot.commands.Spinnies;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 /**
