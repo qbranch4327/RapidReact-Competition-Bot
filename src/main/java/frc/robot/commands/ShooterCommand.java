@@ -16,6 +16,7 @@ public class ShooterCommand extends CommandBase {
 
     @Override
     public void execute(){
+        shooter.update();
         if (controller.getLeftBumper()){
             shooter.indexer80();
         }

@@ -18,9 +18,18 @@ public class ShooterSubsystem extends SubsystemBase{
 
     private final DigitalInput index60 = new DigitalInput(0);
     private final DigitalInput index80 = new DigitalInput(0);
-
+    private final VisionSubsystem vision;
     // private final Encoder turretEncoder = new Encoder(0, 0);
     // private final Encoder shooterEncoder = new Encoder(0, 0);
+    public void update(){
+        System.out.println(vision.getX());
+    }
+    public ShooterSubsystem(){
+        this.vision = null;
+    }
+    public ShooterSubsystem(VisionSubsystem vision){
+        this.vision = vision;
+    }
 
     public void conveyorOn(){
         conveyor.set(.5);
