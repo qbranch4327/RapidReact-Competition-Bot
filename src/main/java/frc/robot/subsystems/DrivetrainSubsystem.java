@@ -6,6 +6,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.music.Orchestra;
+import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -89,5 +91,13 @@ public class DrivetrainSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("rightEncoder DPP", rightEncoder.getDistancePerPulse());
         SmartDashboard.putNumber("leftEncoder", leftEncoder.getDistance());
         SmartDashboard.putNumber("leftEncoder DPP", leftEncoder.getDistancePerPulse());
+    }
+
+    public TalonFX speaker1(){
+       return driveMotorLeftA; 
+    }
+
+    public TalonFX speaker2(){
+        return driveMotorLeftA;
     }
 }

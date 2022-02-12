@@ -9,7 +9,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Servo;
-import frc.robot.subsystems.VisionSubsystem;
 
 public class ShooterSubsystem extends SubsystemBase{
     private TalonFX turret = new TalonFX(0);
@@ -42,7 +41,15 @@ public class ShooterSubsystem extends SubsystemBase{
     }
 
     public void indexer60(){
-        //program later
+        if (indexer.get() == 1.0){
+            indexer.set(0);
+        }
+    }
+
+    public void indexer80(){
+        if (indexer.get() == 0){
+            indexer.set(1.0);
+        }
     }
 
     public void turretCW(double degrees){

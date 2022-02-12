@@ -62,7 +62,7 @@ public class ShooterCommand extends CommandBase {
         }
 
         if (controller.getLeftBumper()){
-            //shooter.indexer80();
+            shooter.indexer80();
         }
         else {
             shooter.indexer60();
