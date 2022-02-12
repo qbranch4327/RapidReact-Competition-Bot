@@ -6,14 +6,12 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.music.Orchestra;
-import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class DrivetrainSubsystem extends SubsystemBase {
+public class AMDB5Subsystem extends SubsystemBase {
     private final int CYCLES_PER_REVOLUTION = 2048;
     private final double CIRCUMFERENCE = 6 * 3.14159;
 
@@ -30,7 +28,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     private final double deadzone = 0.0;
 
-    public DrivetrainSubsystem() {
+    public AMDB5Subsystem() {
         this.rightEncoder.setMaxPeriod(1);
         this.leftEncoder.setMaxPeriod(1);
 

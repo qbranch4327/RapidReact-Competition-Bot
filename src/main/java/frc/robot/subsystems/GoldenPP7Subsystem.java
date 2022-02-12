@@ -10,13 +10,13 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Servo;
 
-public class ShooterSubsystem extends SubsystemBase{
+public class GoldenPP7Subsystem extends SubsystemBase{
     private TalonFX turret = new TalonFX(0);
     private TalonSRX shooter = new TalonSRX(0);
     private Servo indexer = new Servo(0);
     private PWMSparkMax conveyor = new PWMSparkMax(0);
 
-    private final VisionSubsystem vision;
+    private final MoonRakerSubsystem vision;
     private final Encoder turretEncoder = new Encoder(0, 0);
     private final Encoder shooterEncoder = new Encoder(0, 0);
     
@@ -25,10 +25,10 @@ public class ShooterSubsystem extends SubsystemBase{
     public void update(){
         System.out.println(vision.getX());
     }
-    public ShooterSubsystem(){
+    public GoldenPP7Subsystem(){
         this.vision = null;
     }
-    public ShooterSubsystem(VisionSubsystem vision){
+    public GoldenPP7Subsystem(MoonRakerSubsystem vision){
         this.vision = vision;
     }
 

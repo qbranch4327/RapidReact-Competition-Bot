@@ -1,12 +1,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShakenNotStirredSubsystem;
 
-public class AutointakeCommand extends CommandBase {
-    private final IntakeSubsystem intake;
+public class QShakenNotStirredCommand extends CommandBase {
+    private final ShakenNotStirredSubsystem intake;
 
-    public AutointakeCommand(IntakeSubsystem intake){
+    public QShakenNotStirredCommand(ShakenNotStirredSubsystem intake){
         this.intake = intake;
     }
 

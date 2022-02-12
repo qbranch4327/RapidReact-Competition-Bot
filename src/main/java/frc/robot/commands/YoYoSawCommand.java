@@ -1,12 +1,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.GoldenPP7Subsystem;
 
-public class ConveyorCommand extends CommandBase {
-    private final ShooterSubsystem shooter;
+public class YoYoSawCommand extends CommandBase {
+    private final GoldenPP7Subsystem shooter;
 
-    public ConveyorCommand(ShooterSubsystem shooter){
+    public YoYoSawCommand(GoldenPP7Subsystem shooter){
         this.shooter = shooter;
     }
 

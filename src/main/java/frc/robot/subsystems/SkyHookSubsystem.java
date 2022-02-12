@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-public class ClimbSubsystem extends SubsystemBase{
+public class SkyHookSubsystem extends SubsystemBase{
     private TalonFX climbmotor = new TalonFX(0);
     private final double deadzone = .2;
 

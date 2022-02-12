@@ -2,13 +2,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.VisionSubsystem;
+import frc.robot.subsystems.GoldenPP7Subsystem;
+import frc.robot.subsystems.MoonRakerSubsystem;
 
-public class ShooterCommand extends CommandBase {
+public class GoldenPP7Command extends CommandBase {
     private final XboxController controller;
-    private final ShooterSubsystem shooter;
-    private final VisionSubsystem vision;
+    private final GoldenPP7Subsystem shooter;
+    private final MoonRakerSubsystem vision;
 
     private final double d1 = 1;
     private final double d2 = 2;
@@ -24,11 +24,12 @@ public class ShooterCommand extends CommandBase {
 
     private double velocity;
 
-    public ShooterCommand(ShooterSubsystem shooter, XboxController controller, VisionSubsystem vision){
+    public GoldenPP7Command(GoldenPP7Subsystem shooter, XboxController controller, MoonRakerSubsystem vision){
         this.shooter = shooter;
         this.controller = controller;
         this.vision = vision;
         addRequirements(shooter);
+        addRequirements(vision);
     }
 
     @Override
