@@ -2,13 +2,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShakenNotStirredSubsystem;
 
-public class IntakeCommand extends CommandBase {
+public class ShakenNotStirredCommand extends CommandBase {
     private final XboxController controller;
-    private final IntakeSubsystem intake;
+    private final ShakenNotStirredSubsystem intake;
 
-    public IntakeCommand(IntakeSubsystem intake, XboxController controller){
+    public ShakenNotStirredCommand(ShakenNotStirredSubsystem intake, XboxController controller){
         this.controller = controller;
         this.intake = intake;
     }

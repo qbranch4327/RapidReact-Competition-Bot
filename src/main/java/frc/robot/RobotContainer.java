@@ -6,18 +6,18 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.AutonModes.Auto1;
-import frc.robot.commands.ClimbCommand;
-import frc.robot.commands.DriveCommand;
-import frc.robot.commands.IntakeCommand;
-import frc.robot.commands.ShooterCommand;
-import frc.robot.commands.StopTurretCommand;
-import frc.robot.commands.TurnTurretCommand;
-import frc.robot.subsystems.ClimbSubsystem;
-import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.VisionSubsystem;
+import frc.robot.commands.QSkyHookCommand;
+import frc.robot.QAIModes.QAI1;
+import frc.robot.commands.AMDB5Command;
+import frc.robot.commands.ShakenNotStirredCommand;
+import frc.robot.commands.GoldenPP7Command;
+import frc.robot.commands.QSpikeFanOffCommand;
+import frc.robot.commands.QSpikeFanOnCommand;
+import frc.robot.subsystems.SkyHookSubsystem;
+import frc.robot.subsystems.AMDB5Subsystem;
+import frc.robot.subsystems.ShakenNotStirredSubsystem;
+import frc.robot.subsystems.GoldenPP7Subsystem;
+import frc.robot.subsystems.MoonRakerSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,11 +27,11 @@ import frc.robot.subsystems.VisionSubsystem;
  */
 public class RobotContainer {
   private final XboxController controller;
-  private final DrivetrainSubsystem driveTrain;
-  private final ClimbSubsystem climb;
-  private final IntakeSubsystem intake;
-  private final ShooterSubsystem shooter;
-  private final VisionSubsystem vision;
+  private final AMDB5Subsystem driveTrain;
+  private final SkyHookSubsystem climb;
+  private final ShakenNotStirredSubsystem intake;
+  private final GoldenPP7Subsystem shooter;
+  private final MoonRakerSubsystem vision;
   
   private final Command m_autoCommand;
   
@@ -41,18 +41,18 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     this.controller = new XboxController(0);
-    this.driveTrain = new DrivetrainSubsystem();
-    this.climb = new ClimbSubsystem();
-    this.intake = new IntakeSubsystem();
-    this.vision = new VisionSubsystem();
-    this.shooter = new ShooterSubsystem(vision);
+    this.driveTrain = new AMDB5Subsystem();
+    this.climb = new SkyHookSubsystem();
+    this.intake = new ShakenNotStirredSubsystem();
+    this.vision = new MoonRakerSubsystem();
+    this.shooter = new GoldenPP7Subsystem(vision);
     
-    this.m_autoCommand = new Auto1(driveTrain);
+    this.m_autoCommand = new QAI1(driveTrain);
     
-    driveTrain.setDefaultCommand(new DriveCommand(driveTrain,controller));
-    climb.setDefaultCommand(new ClimbCommand(climb, controller));
-    intake.setDefaultCommand(new IntakeCommand(intake, controller));
-    shooter.setDefaultCommand(new ShooterCommand(shooter, controller, vision));
+    driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,controller));
+    climb.setDefaultCommand(new QSkyHookCommand(climb, controller));
+    intake.setDefaultCommand(new ShakenNotStirredCommand(intake, controller));
+    shooter.setDefaultCommand(new GoldenPP7Command(shooter, controller, vision));
 
 
     configureButtonBindings();
@@ -67,8 +67,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     Button visionButton = new JoystickButton(controller, XboxController.Button.kBack.value);
     visionButton
-      .whenPressed(new TurnTurretCommand(shooter))
-      .whenReleased(new StopTurretCommand(shooter));
+      .whenPressed(new QSpikeFanOnCommand(shooter, vision))
+      .whenReleased(new QSpikeFanOffCommand(shooter));
   }
 
   /**

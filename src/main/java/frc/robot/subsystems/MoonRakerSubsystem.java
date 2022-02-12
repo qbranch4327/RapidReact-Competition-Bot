@@ -5,7 +5,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
-public class VisionSubsystem extends SubsystemBase {
+public class MoonRakerSubsystem extends SubsystemBase {
     private NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     private NetworkTableEntry tx = table.getEntry("tx");
     private NetworkTableEntry ty = table.getEntry("ty");
@@ -19,7 +19,7 @@ public class VisionSubsystem extends SubsystemBase {
     private double a1 = 45; //needs to be updated when placed on the robot
 
 
-    public VisionSubsystem(){
+    public MoonRakerSubsystem(){
 
     }
 

@@ -2,15 +2,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.AMDB5Subsystem;
 import com.ctre.phoenix.music.Orchestra;
 
-public class DriveCommand extends CommandBase {
+public class AMDB5Command extends CommandBase {
     private final XboxController controller;
-    private final DrivetrainSubsystem drivetrain;
+    private final AMDB5Subsystem drivetrain;
     private final Orchestra player = new Orchestra();
 
-    public DriveCommand(DrivetrainSubsystem drivetrain, XboxController controller){
+    public AMDB5Command(AMDB5Subsystem drivetrain, XboxController controller){
         this.drivetrain = drivetrain;
         this.controller = controller;
         addRequirements(drivetrain);

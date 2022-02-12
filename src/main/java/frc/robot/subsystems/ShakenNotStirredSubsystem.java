@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class IntakeSubsystem extends SubsystemBase{
+public class ShakenNotStirredSubsystem extends SubsystemBase{
     private final PWMSparkMax armMotor = new PWMSparkMax(0);//tbd
     private final PWMSparkMax wheelMotor = new PWMSparkMax(1);//tbd
     private final double armSpeed = .1; 

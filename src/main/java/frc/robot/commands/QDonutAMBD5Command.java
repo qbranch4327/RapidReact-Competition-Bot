@@ -1,13 +1,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.AMDB5Subsystem;
 
-public class Spinnies extends CommandBase {
+public class QDonutAMBD5Command extends CommandBase {
 
-    private final DrivetrainSubsystem drivetrain;
+    private final AMDB5Subsystem drivetrain;
 
-    public Spinnies(DrivetrainSubsystem drivetrain, double distance) {
+    public QDonutAMBD5Command(AMDB5Subsystem drivetrain, double distance) {
         this.drivetrain = drivetrain;
     }
 
