@@ -4,7 +4,7 @@ import frc.robot.subsystems.GoldenPP7Subsystem;
 import frc.robot.subsystems.MoonRakerSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class QGoldenPP7Command extends CommandBase {
+public class QGoldenPP7OnCommand extends CommandBase {
     private final GoldenPP7Subsystem shooter;
     private final MoonRakerSubsystem vision;
 
@@ -22,7 +22,7 @@ public class QGoldenPP7Command extends CommandBase {
 
     private double velocity;
 
-    public QGoldenPP7Command(GoldenPP7Subsystem shooter, MoonRakerSubsystem vision){
+    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, MoonRakerSubsystem vision){
         this.shooter = shooter;
         this.vision = vision;
         addRequirements(shooter);

@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.QSkyHookCommand;
+import frc.robot.commands.SkyHookCommand;
 import frc.robot.QAIModes.QAI1;
 import frc.robot.commands.AMDB5Command;
 import frc.robot.commands.ShakenNotStirredCommand;
@@ -47,10 +47,10 @@ public class RobotContainer {
     this.vision = new MoonRakerSubsystem();
     this.shooter = new GoldenPP7Subsystem(vision);
     
-    this.m_autoCommand = new QAI1(driveTrain);
+    this.m_autoCommand = new QAI1(driveTrain, intake, vision, shooter);
     
     driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,controller));
-    climb.setDefaultCommand(new QSkyHookCommand(climb, controller));
+    climb.setDefaultCommand(new SkyHookCommand(climb, controller));
     intake.setDefaultCommand(new ShakenNotStirredCommand(intake, controller));
     shooter.setDefaultCommand(new GoldenPP7Command(shooter, controller, vision));
 
