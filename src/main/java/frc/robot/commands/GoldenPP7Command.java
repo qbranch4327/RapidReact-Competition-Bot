@@ -6,9 +6,10 @@ import frc.robot.subsystems.GoldenPP7Subsystem;
 import frc.robot.subsystems.MoonRakerSubsystem;
 
 public class GoldenPP7Command extends CommandBase {
-    private final XboxController controller;
+    private final XboxController controller1;
+    private final XboxController controller2;
     private final GoldenPP7Subsystem shooter;
-    private final MoonRakerSubsystem vision;
+    private MoonRakerSubsystem vision = null;
 
     private final double d1 = 1;
     private final double d2 = 2;
@@ -24,12 +25,20 @@ public class GoldenPP7Command extends CommandBase {
 
     private double velocity;
 
-    public GoldenPP7Command(GoldenPP7Subsystem shooter, XboxController controller, MoonRakerSubsystem vision){
+    public GoldenPP7Command(GoldenPP7Subsystem shooter, XboxController controller1, XboxController controller2, MoonRakerSubsystem vision){
         this.shooter = shooter;
-        this.controller = controller;
+        this.controller1 = controller1;
+        this.controller2 = controller2;
         this.vision = vision;
         addRequirements(shooter);
         addRequirements(vision);
+    }
+
+    public GoldenPP7Command(GoldenPP7Subsystem shooter, XboxController controller1, XboxController controller2){
+        this.shooter = shooter;
+        this.controller1 = controller1;
+        this.controller2 = controller2;
+        addRequirements(shooter);
     }
 
     @Override
@@ -62,35 +71,35 @@ public class GoldenPP7Command extends CommandBase {
             velocity = ips3;
         }
 
-        if (controller.getLeftBumper()){
+        if (controller1.getLeftBumper()){
             shooter.indexer80();
         }
         else {
             shooter.indexer60();
         }
 
-        if (controller.getAButton()){
+        if (controller1.getAButton()){
             shooter.shooterOn(velocity);
         }
         else {
             shooter.shooterOff();
         }
         
-        if (controller.getXButton()){
+        if (controller2.getXButton()){
             shooter.conveyorOn();
         }
         else {
             shooter.conveyorOff();
         }
         
-        if (controller.getBButton()){
+        if (controller2.getBButton()){
             shooter.turretCW();
         }
         else {
             shooter.turretOff();
         }
         
-        if (controller.getYButton()){
+        if (controller2.getYButton()){
             shooter.turretCCW();
         }
         else {

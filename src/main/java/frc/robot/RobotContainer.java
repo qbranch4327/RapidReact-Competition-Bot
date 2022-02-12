@@ -26,7 +26,8 @@ import frc.robot.subsystems.MoonRakerSubsystem;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  private final XboxController controller;
+  private final XboxController controller1;
+  private final XboxController controller2;
   private final AMDB5Subsystem driveTrain;
   private final SkyHookSubsystem climb;
   private final ShakenNotStirredSubsystem intake;
@@ -40,19 +41,20 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    this.controller = new XboxController(0);
+    this.controller1 = new XboxController(0);
+    this.controller2 = new XboxController(1);
     this.driveTrain = new AMDB5Subsystem();
     this.climb = new SkyHookSubsystem();
     this.intake = new ShakenNotStirredSubsystem();
     this.vision = new MoonRakerSubsystem();
-    this.shooter = new GoldenPP7Subsystem(vision);
+    this.shooter = new GoldenPP7Subsystem();
     
     this.m_autoCommand = new QAI1(driveTrain, intake, vision, shooter);
     
-    driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,controller));
-    climb.setDefaultCommand(new SkyHookCommand(climb, controller));
-    intake.setDefaultCommand(new ShakenNotStirredCommand(intake, controller));
-    shooter.setDefaultCommand(new GoldenPP7Command(shooter, controller, vision));
+    driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,controller1));
+    climb.setDefaultCommand(new SkyHookCommand(climb, controller2));
+    intake.setDefaultCommand(new ShakenNotStirredCommand(intake, controller2));
+    shooter.setDefaultCommand(new GoldenPP7Command(shooter, controller1, controller2));
 
 
     configureButtonBindings();
@@ -65,7 +67,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    Button visionButton = new JoystickButton(controller, XboxController.Button.kBack.value);
+    Button visionButton = new JoystickButton(controller1, XboxController.Button.kBack.value);
     visionButton
       .whenPressed(new QSpikeFanOnCommand(shooter, vision))
       .whenReleased(new QSpikeFanOffCommand(shooter));
