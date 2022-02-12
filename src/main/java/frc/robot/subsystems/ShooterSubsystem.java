@@ -1,26 +1,28 @@
 package frc.robot.subsystems;
 
-// import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Encoder;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.Servo;
+import frc.robot.subsystems.VisionSubsystem;
 
 public class ShooterSubsystem extends SubsystemBase{
     private TalonFX turret = new TalonFX(0);
     private TalonSRX shooter = new TalonSRX(0);
-    private PWMSparkMax indexer = new PWMSparkMax(0);
+    private Servo indexer = new Servo(0);
     private PWMSparkMax conveyor = new PWMSparkMax(0);
 
-    private final DigitalInput index60 = new DigitalInput(0);
-    private final DigitalInput index80 = new DigitalInput(0);
     private final VisionSubsystem vision;
-    // private final Encoder turretEncoder = new Encoder(0, 0);
-    // private final Encoder shooterEncoder = new Encoder(0, 0);
+    private final Encoder turretEncoder = new Encoder(0, 0);
+    private final Encoder shooterEncoder = new Encoder(0, 0);
+    
+    private final double turretCircumference = 932;
+    
     public void update(){
         System.out.println(vision.getX());
     }
@@ -40,29 +42,21 @@ public class ShooterSubsystem extends SubsystemBase{
     }
 
     public void indexer60(){
-        if (index80.get()){
-            indexer.set(-.05);
-        }
-        else if (index60.get()){
-            indexer.stopMotor();
-        }
-    }
-
-    public void indexer80(){
-        if (index60.get()){
-            indexer.set(.15);
-        }
-        else if (index80.get()){
-            indexer.stopMotor();
-        }
+        //program later
     }
 
     public void turretCW(double degrees){
-            turret.set(ControlMode.PercentOutput, .5);
+        double x = (degrees*turretCircumference)/360;
+        while (turretEncoder.getDistance() < x){
+            turret.set(ControlMode.PercentOutput, .2);
+        }
     }
 
     public void turretCCW(double degrees){
-        turret.set(ControlMode.PercentOutput, -.5);
+        double x = (degrees*turretCircumference)/360;
+        while (turretEncoder.getDistance() > x){
+            turret.set(ControlMode.PercentOutput, -.2);
+        }
     }
 
     public void turretCW(){
@@ -78,7 +72,16 @@ public class ShooterSubsystem extends SubsystemBase{
     }
 
     public void shooterOn(double velocity){
-        shooter.set(ControlMode.Velocity, velocity);
+        double c = .3;
+        shooter.set(ControlMode.PercentOutput, c);
+        while (shooterEncoder.getRate() < velocity){
+            shooter.set(ControlMode.PercentOutput, c);
+            c += .05;
+        }
+        while (shooterEncoder.getRate() > velocity){
+            shooter.set(ControlMode.PercentOutput, c);
+            c -= .05;
+        }
     }
 
     public void shooterOff(){

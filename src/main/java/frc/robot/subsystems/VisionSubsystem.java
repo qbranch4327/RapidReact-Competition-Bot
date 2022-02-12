@@ -14,9 +14,9 @@ public class VisionSubsystem extends SubsystemBase {
     private double x = tx.getDouble(0.0);
     private double y = ty.getDouble(0.0);
 
-    private double h1 = 48;
+    private double h1 = 48; //needs to be updated when placed on the robot
     private double h2 = 104;
-    private double a1 = 45;
+    private double a1 = 45; //needs to be updated when placed on the robot
 
 
     public VisionSubsystem(){

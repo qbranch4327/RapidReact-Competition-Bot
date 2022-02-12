@@ -17,6 +17,7 @@ import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.VisionSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -30,6 +31,7 @@ public class RobotContainer {
   private final ClimbSubsystem climb;
   private final IntakeSubsystem intake;
   private final ShooterSubsystem shooter;
+  private final VisionSubsystem vision;
   
   private final Command m_autoCommand;
   
@@ -42,14 +44,15 @@ public class RobotContainer {
     this.driveTrain = new DrivetrainSubsystem();
     this.climb = new ClimbSubsystem();
     this.intake = new IntakeSubsystem();
-    this.shooter = new ShooterSubsystem();
+    this.vision = new VisionSubsystem();
+    this.shooter = new ShooterSubsystem(vision);
     
     this.m_autoCommand = new Auto1(driveTrain);
     
     driveTrain.setDefaultCommand(new DriveCommand(driveTrain,controller));
     climb.setDefaultCommand(new ClimbCommand(climb, controller));
     intake.setDefaultCommand(new IntakeCommand(intake, controller));
-    shooter.setDefaultCommand(new ShooterCommand(shooter, controller));
+    shooter.setDefaultCommand(new ShooterCommand(shooter, controller, vision));
 
 
     configureButtonBindings();
