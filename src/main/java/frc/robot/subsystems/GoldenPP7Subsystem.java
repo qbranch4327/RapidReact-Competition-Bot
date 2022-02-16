@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PWM;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -14,9 +15,10 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     private TalonFX turret = new TalonFX(5);
     private TalonSRX shooter1 = new TalonSRX(6);
     private TalonSRX shooter2 = new TalonSRX(7);
-    private Servo indexer = new Servo(0);
+    // Servo indexer = new Servo(0);
     private PWMSparkMax conveyor1 = new PWMSparkMax(14);
     private PWMSparkMax conveyor2 = new PWMSparkMax(17);
+    private PWMSparkMax conveyorARM = new PWMSparkMax(16);
 
     private final MoonRakerSubsystem vision;
     private final Encoder turretEncoder = new Encoder(5, 6);
@@ -34,27 +36,36 @@ public class GoldenPP7Subsystem extends SubsystemBase{
         this.vision = vision;
     }
 
-    public void conveyorOn(){
+    public void conveyor1On(){
         conveyor1.set(.5);
-        conveyor2.set(.5);
     }
     
-    public void conveyorOff(){
+    public void conveyor1Off(){
         conveyor1.stopMotor();
+        
+    }
+
+    public void conveyor2On(){
+        conveyor2.set(.5);
+
+    }
+
+    public void conveyor2Off(){
         conveyor2.stopMotor();
+
     }
 
-    public void indexer60(){
-        if (indexer.get() == 1.0){
-            indexer.set(0);
-        }
-    }
+    //public void indexer60(){
+    //    if (indexer.get() == 1.0){
+    //        indexer.set(0);
+    //    }
+    //}
 
-    public void indexer80(){
-        if (indexer.get() == 0){
-            indexer.set(1.0);
-        }
-    }
+    //public void indexer80(){
+    //    if (indexer.get() == 0){
+    //        indexer.set(1.0);
+    //    }
+    //}
 
     public void turretCW(double degrees){
         double x = (degrees*turretCircumference)/360;

@@ -17,7 +17,7 @@ public class AMDB5Subsystem extends SubsystemBase {
 
     // Set up drive motors
 
-    private TalonFX driveMotorLeftA = new TalonFX(1);
+    private TalonFX driveMotorLeftA = new TalonFX(11);
     private TalonFX driveMotorLeftB = new TalonFX(2);
     private TalonFX driveMotorRightA = new TalonFX(3);
     private TalonFX driveMotorRightB = new TalonFX(4);
@@ -41,11 +41,11 @@ public class AMDB5Subsystem extends SubsystemBase {
         this.rightEncoder.setSamplesToAverage(5);
         this.leftEncoder.setSamplesToAverage(5);
 
-        driveMotorLeftA.setInverted(TalonFXInvertType.Clockwise);
-        driveMotorLeftA.setInverted(TalonFXInvertType.CounterClockwise);
+    //    driveMotorLeftA.setInverted(TalonFXInvertType.Clockwise);
+        driveMotorRightA.setInverted(TalonFXInvertType.Clockwise);
 
         driveMotorRightB.follow(driveMotorRightA);
-        driveMotorLeftB.follow(driveMotorLeftB);
+        driveMotorLeftB.follow(driveMotorLeftA);
 
         driveMotorLeftB.setInverted(InvertType.FollowMaster);
         driveMotorRightB.setInverted(InvertType.FollowMaster);

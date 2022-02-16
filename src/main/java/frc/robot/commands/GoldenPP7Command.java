@@ -45,40 +45,40 @@ public class GoldenPP7Command extends CommandBase {
     public void execute(){
         // shooter.update();
 
-        if (vision.getDistance() < d1){
-            velocity = ips1;
-            //add indexer command
-        }
-        else if (vision.getDistance() > d1 && vision.getDistance() < d2){
-            velocity = ips1;
-        }
-        else if (vision.getDistance() > d2 && vision.getDistance() < d3){
-            velocity = ips1;
-        }
-        else if (vision.getDistance() > d3 && vision.getDistance() < d4){
-            velocity = ips1;
-        }
-        else if (vision.getDistance() > d4 && vision.getDistance() < d5){
-            velocity = ips1;
-        }
-        else if (vision.getDistance() > d5 && vision.getDistance() < d6){
-            velocity = ips1;
-        }
-        else if (vision.getDistance() > d6 && vision.getDistance() < d7){
-            velocity = ips2;
-        }
-        else {
-            velocity = ips3;
-        }
+        // if (vision.getDistance() < d1){
+        //     velocity = ips1;
+        //     //add indexer command
+        // }
+        // else if (vision.getDistance() > d1 && vision.getDistance() < d2){
+        //     velocity = ips1;
+        // }
+        // else if (vision.getDistance() > d2 && vision.getDistance() < d3){
+        //     velocity = ips1;
+        // }
+        // else if (vision.getDistance() > d3 && vision.getDistance() < d4){
+        //     velocity = ips1;
+        // }
+        // else if (vision.getDistance() > d4 && vision.getDistance() < d5){
+        //     velocity = ips1;
+        // }
+        // else if (vision.getDistance() > d5 && vision.getDistance() < d6){
+        //     velocity = ips1;
+        // }
+        // else if (vision.getDistance() > d6 && vision.getDistance() < d7){
+        //     velocity = ips2;
+        // }
+        // else {
+        //     velocity = ips3;
+        // }
 
-        if (controller1.getLeftBumper()){
-            shooter.indexer80();
-        }
-        else {
-            shooter.indexer60();
-        }
+        // if (controller1.getLeftBumper()){
+        //     shooter.indexer80();
+        // }
+        // else {
+        //     shooter.indexer60();
+        // }
 
-        if (controller1.getAButton()){
+        if (controller2.getAButton()){
             shooter.shooterOn(velocity);
         }
         else {
@@ -86,10 +86,19 @@ public class GoldenPP7Command extends CommandBase {
         }
         
         if (controller2.getXButton()){
-            shooter.conveyorOn();
+            shooter.conveyor1On();
         }
         else {
-            shooter.conveyorOff();
+            shooter.conveyor1Off();
+        }
+
+        if (controller1.getXButton()){
+            shooter.conveyor2On();
+
+        }
+        else {
+            shooter.conveyor2Off();
+
         }
         
         if (controller2.getBButton()){
@@ -106,14 +115,14 @@ public class GoldenPP7Command extends CommandBase {
             shooter.turretOff();
         }
 
-        if (vision.getX() < -5){
-            shooter.turretCCW(vision.getX());
-        }
-        else if (vision.getX() > 5){
-            shooter.turretCW(vision.getX());
-        }
-        else {
-            shooter.turretOff();;
-        }
+        // if (vision.getX() < -5){
+        //     shooter.turretCCW(vision.getX());
+        // }
+        // else if (vision.getX() > 5){
+        //     shooter.turretCW(vision.getX());
+        // }
+        // else {
+        //     shooter.turretOff();;
+        // }
     }
 }

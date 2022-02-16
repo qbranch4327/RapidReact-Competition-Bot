@@ -6,17 +6,21 @@ import frc.robot.subsystems.ShakenNotStirredSubsystem;
 
 public class ShakenNotStirredCommand extends CommandBase {
     private final XboxController controller;
+    private final XboxController controller1;
+    private final XboxController controller2;
     private final ShakenNotStirredSubsystem intake;
 
-    public ShakenNotStirredCommand(ShakenNotStirredSubsystem intake, XboxController controller){
+    public ShakenNotStirredCommand(ShakenNotStirredSubsystem intake, XboxController controller, XboxController controller1, XboxController controller2){
         this.controller = controller;
+        this.controller1 = controller1;
+        this.controller2 = controller2;
         this.intake = intake;
         addRequirements(intake);
     }
 
     @Override
     public void execute(){
-        if (controller.getRightBumperPressed()){
+        if (controller2.getRightBumperPressed()){
             intake.intakeOn();
         }
         else{

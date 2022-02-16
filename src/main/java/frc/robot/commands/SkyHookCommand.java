@@ -6,18 +6,22 @@ import frc.robot.subsystems.SkyHookSubsystem;
 
 public class SkyHookCommand extends CommandBase {
     private final XboxController controller;
+    private final XboxController controller1;
+    private final XboxController controller2;
     private final SkyHookSubsystem climber;
 
-    public SkyHookCommand(SkyHookSubsystem climber, XboxController controller){
+    public SkyHookCommand(SkyHookSubsystem climber, XboxController controller, XboxController controller1, XboxController controller2){
         this.climber = climber;
         this.controller = controller;
+        this.controller1 = controller1;
+        this.controller2 = controller2;
         addRequirements(climber);
     }
 
     @Override
     public void execute(){
-        var percentUp = controller.getRightTriggerAxis();
-        var percentDown = controller.getLeftTriggerAxis();
+        var percentUp = controller2.getRightTriggerAxis();
+        var percentDown = controller2.getLeftTriggerAxis();
         this.climber.setspeed(percentUp,percentDown);
     }
 }
