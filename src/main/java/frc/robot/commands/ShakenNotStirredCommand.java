@@ -11,6 +11,7 @@ public class ShakenNotStirredCommand extends CommandBase {
     public ShakenNotStirredCommand(ShakenNotStirredSubsystem intake, XboxController controller){
         this.controller = controller;
         this.intake = intake;
+        addRequirements(intake);
     }
 
     @Override

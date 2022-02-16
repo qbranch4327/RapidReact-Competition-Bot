@@ -43,7 +43,7 @@ public class GoldenPP7Command extends CommandBase {
 
     @Override
     public void execute(){
-        shooter.update();
+        // shooter.update();
 
         if (vision.getDistance() < d1){
             velocity = ips1;

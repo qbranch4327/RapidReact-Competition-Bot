@@ -9,6 +9,7 @@ public class QDonutAMBD5Command extends CommandBase {
 
     public QDonutAMBD5Command(AMDB5Subsystem drivetrain, double distance) {
         this.drivetrain = drivetrain;
+        addRequirements(drivetrain);
     }
 
     @Override

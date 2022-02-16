@@ -7,7 +7,7 @@ public class QSpikeFanOffCommand extends CommandBase {
     private final GoldenPP7Subsystem shooter;
     public QSpikeFanOffCommand(GoldenPP7Subsystem shooter) {
         this.shooter = shooter;
-
+        addRequirements(shooter);
     }
     @Override
     public void initialize(){

@@ -11,20 +11,22 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Servo;
 
 public class GoldenPP7Subsystem extends SubsystemBase{
-    private TalonFX turret = new TalonFX(0);
-    private TalonSRX shooter = new TalonSRX(0);
+    private TalonFX turret = new TalonFX(5);
+    private TalonSRX shooter1 = new TalonSRX(6);
+    private TalonSRX shooter2 = new TalonSRX(7);
     private Servo indexer = new Servo(0);
-    private PWMSparkMax conveyor = new PWMSparkMax(0);
+    private PWMSparkMax conveyor1 = new PWMSparkMax(14);
+    private PWMSparkMax conveyor2 = new PWMSparkMax(17);
 
     private final MoonRakerSubsystem vision;
-    private final Encoder turretEncoder = new Encoder(0, 0);
-    private final Encoder shooterEncoder = new Encoder(0, 0);
+    private final Encoder turretEncoder = new Encoder(5, 6);
+    private final Encoder shooterEncoder = new Encoder(7, 8);
     
     private final double turretCircumference = 932;
     
-    public void update(){
-        System.out.println(vision.getX());
-    }
+    // public void update(){
+    //     System.out.println(vision.getX());
+    // }
     public GoldenPP7Subsystem(){
         this.vision = null;
     }
@@ -33,11 +35,13 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     }
 
     public void conveyorOn(){
-        conveyor.set(.5);
+        conveyor1.set(.5);
+        conveyor2.set(.5);
     }
     
     public void conveyorOff(){
-        conveyor.stopMotor();
+        conveyor1.stopMotor();
+        conveyor2.stopMotor();
     }
 
     public void indexer60(){
@@ -80,18 +84,22 @@ public class GoldenPP7Subsystem extends SubsystemBase{
 
     public void shooterOn(double velocity){
         double c = .3;
-        shooter.set(ControlMode.PercentOutput, c);
+        shooter1.set(ControlMode.PercentOutput, c);
+        shooter2.set(ControlMode.PercentOutput, c);
         while (shooterEncoder.getRate() < velocity){
-            shooter.set(ControlMode.PercentOutput, c);
+            shooter1.set(ControlMode.PercentOutput, c);
+            shooter2.set(ControlMode.PercentOutput, c);
             c += .05;
         }
         while (shooterEncoder.getRate() > velocity){
-            shooter.set(ControlMode.PercentOutput, c);
+            shooter1.set(ControlMode.PercentOutput, c);
+            shooter2.set(ControlMode.PercentOutput, c);
             c -= .05;
         }
     }
 
     public void shooterOff(){
-        shooter.set(ControlMode.Velocity, 0);
+        shooter1.set(ControlMode.Velocity, 0);
+        shooter2.set(ControlMode.Velocity, 0);
     }
 }

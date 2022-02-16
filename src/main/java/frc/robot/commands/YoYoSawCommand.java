@@ -8,6 +8,7 @@ public class YoYoSawCommand extends CommandBase {
 
     public YoYoSawCommand(GoldenPP7Subsystem shooter){
         this.shooter = shooter;
+        addRequirements(shooter);
     }
 
     @Override

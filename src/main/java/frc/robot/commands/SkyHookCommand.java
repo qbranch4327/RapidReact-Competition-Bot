@@ -11,6 +11,7 @@ public class SkyHookCommand extends CommandBase {
     public SkyHookCommand(SkyHookSubsystem climber, XboxController controller){
         this.climber = climber;
         this.controller = controller;
+        addRequirements(climber);
     }
 
     @Override

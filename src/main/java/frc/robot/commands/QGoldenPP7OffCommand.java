@@ -7,7 +7,7 @@ public class QGoldenPP7OffCommand extends CommandBase{
 
     public QGoldenPP7OffCommand(GoldenPP7Subsystem shooter) {
         this.shooter = shooter;
-
+        addRequirements(shooter);
     }
 
     @Override

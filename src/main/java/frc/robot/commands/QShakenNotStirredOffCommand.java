@@ -8,6 +8,7 @@ public class QShakenNotStirredOffCommand extends CommandBase {
 
     public QShakenNotStirredOffCommand(ShakenNotStirredSubsystem intake){
         this.intake = intake;
+        addRequirements(intake);
     }
 
     @Override

@@ -12,7 +12,8 @@ public class QSpikeFanOnCommand extends CommandBase {
     public QSpikeFanOnCommand(GoldenPP7Subsystem shooter, MoonRakerSubsystem vision) {
         this.shooter = shooter;
         this.vision = vision;
-
+        addRequirements(shooter);
+        addRequirements(vision);
     }
     @Override
     public void initialize(){
