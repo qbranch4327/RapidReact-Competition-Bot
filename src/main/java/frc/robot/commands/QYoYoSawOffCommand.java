@@ -13,7 +13,8 @@ public class QYoYoSawOffCommand extends CommandBase{
 
     @Override
     public void initialize(){
-        this.shooter.conveyorOff();
+        this.shooter.conveyor1Off();
+        this.shooter.conveyor2Off();
     }
     @Override
     public boolean isFinished() {

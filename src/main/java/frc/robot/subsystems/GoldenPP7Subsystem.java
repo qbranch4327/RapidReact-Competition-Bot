@@ -9,6 +9,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.Servo;
 
 public class GoldenPP7Subsystem extends SubsystemBase{
@@ -16,9 +19,8 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     private TalonSRX shooter1 = new TalonSRX(6);
     private TalonSRX shooter2 = new TalonSRX(7);
     // Servo indexer = new Servo(0);
-    private PWMSparkMax conveyor1 = new PWMSparkMax(14);
-    private PWMSparkMax conveyor2 = new PWMSparkMax(17);
-    private PWMSparkMax conveyorARM = new PWMSparkMax(16);
+    private CANSparkMax conveyor1 = new CANSparkMax(14, MotorType.kBrushless);
+    private CANSparkMax conveyor2 = new CANSparkMax(17, MotorType.kBrushless);
 
     private final MoonRakerSubsystem vision;
     private final Encoder turretEncoder = new Encoder(5, 6);
@@ -37,7 +39,7 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     }
 
     public void conveyor1On(){
-        conveyor1.set(.5);
+        conveyor1.set(-.8);
     }
     
     public void conveyor1Off(){
@@ -46,7 +48,7 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     }
 
     public void conveyor2On(){
-        conveyor2.set(.5);
+        conveyor2.set(-.8);
 
     }
 
@@ -94,7 +96,7 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     }
 
     public void shooterOn(double velocity){
-        double c = .3;
+        double c = 1;
         shooter1.set(ControlMode.PercentOutput, c);
         shooter2.set(ControlMode.PercentOutput, c);
         while (shooterEncoder.getRate() < velocity){

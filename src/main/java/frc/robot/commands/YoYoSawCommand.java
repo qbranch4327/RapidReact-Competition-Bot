@@ -13,12 +13,14 @@ public class YoYoSawCommand extends CommandBase {
 
     @Override
     public void execute(){
-        shooter.conveyorOn();
+        shooter.conveyor1On();
+        shooter.conveyor2On();
         }
 
     @Override
     public void finalize(){
-        shooter.conveyorOff();
+        shooter.conveyor1Off();
+        shooter.conveyor2Off();
     }
 
 }

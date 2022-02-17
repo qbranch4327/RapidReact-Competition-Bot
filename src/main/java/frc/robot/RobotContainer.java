@@ -52,8 +52,8 @@ public class RobotContainer {
     this.m_autoCommand = new QAI1(driveTrain, intake, vision, shooter);
     
     driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,controller1));
-    climb.setDefaultCommand(new SkyHookCommand(climb, controller, controller1, controller2));
-    intake.setDefaultCommand(new ShakenNotStirredCommand(intake, controller2));
+    climb.setDefaultCommand(new SkyHookCommand(climb, controller1, controller2));
+    intake.setDefaultCommand(new ShakenNotStirredCommand(intake, controller1, controller2));
     shooter.setDefaultCommand(new GoldenPP7Command(shooter, controller1, controller2));
 
 
