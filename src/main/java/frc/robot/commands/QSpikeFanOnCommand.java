@@ -18,10 +18,14 @@ public class QSpikeFanOnCommand extends CommandBase {
     @Override
     public void initialize(){
         if (vision.getX() < -5){
-            shooter.turretCCW(vision.getX());
+            while (vision.getX() < -5){
+                shooter.turretCCW();
+            }
         }
         else if (vision.getX() > 5){
-            shooter.turretCW(vision.getX());
+            while (vision.getX() > 5){
+                 shooter.turretCW();
+            }
         }
         else {
             shooter.turretOff();;

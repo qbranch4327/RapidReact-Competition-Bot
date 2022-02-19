@@ -5,12 +5,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShakenNotStirredSubsystem;
 
 public class ShakenNotStirredCommand extends CommandBase {
-    private final XboxController controller1;
     private final XboxController controller2;
     private final ShakenNotStirredSubsystem intake;
 
-    public ShakenNotStirredCommand(ShakenNotStirredSubsystem intake, XboxController controller1, XboxController controller2){
-        this.controller1 = controller1;
+    public ShakenNotStirredCommand(ShakenNotStirredSubsystem intake, XboxController controller2){
         this.controller2 = controller2;
         this.intake = intake;
         addRequirements(intake);

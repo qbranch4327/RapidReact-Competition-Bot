@@ -2,9 +2,9 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShakenNotStirredSubsystem extends SubsystemBase{
@@ -12,29 +12,33 @@ public class ShakenNotStirredSubsystem extends SubsystemBase{
     private final CANSparkMax wheelMotor = new CANSparkMax(15, MotorType.kBrushless);//tbd
     private final double armSpeed = .10; 
     private final double wheelSpeed = .5; 
-    // private final DigitalInput uplimit = new DigitalInput(0);//tbd
-    // private final DigitalInput downlimit = new DigitalInput(1);//tbd
+    private final WaitCommand upTime = new WaitCommand(3);
+    private final WaitCommand downTime = new WaitCommand(3);
 
     public void intakeOn(){
         wheelMotor.set(wheelSpeed);
         armMotor.set(armSpeed);
-        // if (downlimit.get()){
-        //     armMotor.stopMotor();
-        // }
+        downTime.initialize();
+        downTime.execute();
+        SmartDashboard.putString("intake timer: ", downTime.toString());
+        if (downTime.isFinished()){
+            armMotor.stopMotor();
+        }
     }
 
     public void intakeUp(){
         wheelMotor.set(wheelSpeed);
         armMotor.set(armSpeed*-1.5);
-
+        upTime.initialize();
+        upTime.execute();
+        SmartDashboard.putString("intake timer: ", upTime.toString());
+        if (upTime.isFinished()){
+            armMotor.stopMotor();
+        }
     }
-
 
     public void intakeOff(){
         wheelMotor.stopMotor();
         armMotor.stopMotor();
-        // if (uplimit.get()){
-        //     armMotor.stopMotor();
-        // }
     }
 }

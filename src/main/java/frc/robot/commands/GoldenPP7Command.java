@@ -112,14 +112,18 @@ public class GoldenPP7Command extends CommandBase {
             shooter.turretOff();
         }
 
-        // if (vision.getX() < -5){
-        //     shooter.turretCCW(vision.getX());
-        // }
-        // else if (vision.getX() > 5){
-        //     shooter.turretCW(vision.getX());
-        // }
-        // else {
-        //     shooter.turretOff();;
-        // }
+        if (vision.getX() < -5){
+            while (vision.getX() < -5){
+                shooter.turretCCW();
+            }
+        }
+        else if (vision.getX() > 5){
+            while (vision.getX() > 5){
+                 shooter.turretCW();
+            }
+        }
+        else {
+            shooter.turretOff();;
+        }
     }
 }

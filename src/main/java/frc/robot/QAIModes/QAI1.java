@@ -17,16 +17,18 @@ public class QAI1 extends SequentialCommandGroup {
      * @param drive The drive subsystem this command will run on
      * @param hatch The hatch subsystem this command will run on
      */
+
+    
+
     public QAI1(AMDB5Subsystem drive, ShakenNotStirredSubsystem intake, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter) {
+        QAMDB5Command driving = new QAMDB5Command(drive, 40.75, .5);
+        QShakenNotStirredOnCommand intaking = new QShakenNotStirredOnCommand(intake, driving);
         addCommands(
-            new QAMDB5Command(drive, 40.75, .5),
-            new QShakenNotStirredOnCommand(intake),
-            new QSpikeFanOnCommand(shooter, vision),
-            new QGoldenPP7OnCommand(shooter, vision),
-            new QYoyoSawOnCommand(shooter),
-            new QShakenNotStirredOffCommand(intake),
-            new QYoYoSawOffCommand(shooter),
-            new QGoldenPP7OffCommand(shooter)
+            driving,
+            intaking,
+            //new QSpikeFanOnCommand(shooter, vision),
+            new QGoldenPP7OnCommand(shooter,intaking),
+            new QYoyoSawOnCommand(shooter, intaking)
         );
     }
 }

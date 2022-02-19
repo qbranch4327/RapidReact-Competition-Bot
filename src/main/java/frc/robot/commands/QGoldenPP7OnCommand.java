@@ -3,10 +3,15 @@ package frc.robot.commands;
 import frc.robot.subsystems.GoldenPP7Subsystem;
 import frc.robot.subsystems.MoonRakerSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class QGoldenPP7OnCommand extends CommandBase {
     private final GoldenPP7Subsystem shooter;
-    private final MoonRakerSubsystem vision;
+    private MoonRakerSubsystem vision = null;
+    private QShakenNotStirredOnCommand intake;
+
+    WaitCommand shootTime = new WaitCommand(10);
 
     private final double d1 = 1;
     private final double d2 = 2;
@@ -20,13 +25,20 @@ public class QGoldenPP7OnCommand extends CommandBase {
     private final double ips2 = 700;
     private final double ips3 = 800;
 
-    private double velocity;
+    private double velocity = ips2;
 
-    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, MoonRakerSubsystem vision){
+    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, MoonRakerSubsystem vision, QShakenNotStirredOnCommand intake){
         this.shooter = shooter;
         this.vision = vision;
+        this.intake = intake;
         addRequirements(shooter);
         addRequirements(vision);
+    }
+
+    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, QShakenNotStirredOnCommand intake){
+        this.shooter = shooter;
+        this.intake = intake;
+        addRequirements(shooter);
     }
 
     @Override
@@ -57,7 +69,14 @@ public class QGoldenPP7OnCommand extends CommandBase {
             velocity = ips3;
         }
 
-        shooter.shooterOn(velocity);
-        
+        if (intake.isFinished()){
+            shooter.shooterOn(velocity);
+            shootTime.initialize();
+            shootTime.execute();
+            SmartDashboard.putString("shooter time", shootTime.toString());
+            if (shootTime.isFinished()){
+                shooter.shooterOff();
+            }
+        } 
     }
 }
