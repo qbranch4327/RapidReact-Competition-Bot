@@ -19,19 +19,17 @@ public class QAI1 extends SequentialCommandGroup {
      * @param hatch The hatch subsystem this command will run on
      */
     private Timer time = new Timer();
-    private double x;
 
     public QAI1(AMDB5Subsystem drive, ShakenNotStirredSubsystem intake, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter) {
         time.start();
-        x = time.get();
         QAMDB5Command driving = new QAMDB5Command(drive, 40.75, .5);
-        QShakenNotStirredOnCommand intaking = new QShakenNotStirredOnCommand(intake, driving, time, x);
+        QShakenNotStirredOnCommand intaking = new QShakenNotStirredOnCommand(intake, driving, 5000);
         addCommands(
             driving,
             intaking,
             //new QSpikeFanOnCommand(shooter, vision),
-            new QGoldenPP7OnCommand(shooter, intaking, time, x),
-            new QYoyoSawOnCommand(shooter, intaking, time, x)
+            new QGoldenPP7OnCommand(shooter, intaking, 6000),
+            new QYoyoSawOnCommand(shooter, intaking, 6000)
         );
     }
 }

@@ -20,27 +20,34 @@ public class QGoldenPP7OnCommand extends CommandBase {
     private final double ips1 = 400;
     private final double ips2 = 700;
     private final double ips3 = 800;
-    private double x;
 
-    private Timer timer;
+    private Timer timer = new Timer();
+    private final double duration;
 
     private double velocity = ips2;
 
-    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, MoonRakerSubsystem vision, QShakenNotStirredOnCommand intake, Timer time){
+    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, MoonRakerSubsystem vision, QShakenNotStirredOnCommand intake, double duration){
         this.shooter = shooter;
         this.vision = vision;
         this.intake = intake;
-        this.timer = time;
-        this.x  = x;
+        this.duration = duration;
         addRequirements(shooter);
         addRequirements(vision);
     }
 
-    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, QShakenNotStirredOnCommand intake, Timer time, double x){
+    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, QShakenNotStirredOnCommand intake, double duration){
         this.shooter = shooter;
         this.intake = intake;
-        this.timer = time;
+        this.duration = duration;
         addRequirements(shooter);
+    }
+
+    @Override
+    public void initialize(){
+        if (intake.isFinished()){
+            timer.reset();
+            timer.start();
+        }
     }
 
     @Override
@@ -73,9 +80,14 @@ public class QGoldenPP7OnCommand extends CommandBase {
 
         if (intake.isFinished()){
             shooter.shooterOn(velocity);
-            if (timer.get()-x > 16){
-                shooter.shooterOff();
-            }
         } 
+    }
+
+    @Override
+    public boolean isFinished(){
+        if (timer.get() > duration){
+            shooter.shooterOff();
+        }
+        return true;
     }
 }

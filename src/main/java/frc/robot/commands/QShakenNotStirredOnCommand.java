@@ -6,30 +6,35 @@ import frc.robot.subsystems.ShakenNotStirredSubsystem;
 
 public class QShakenNotStirredOnCommand extends CommandBase {
     private final ShakenNotStirredSubsystem intake;
-    private final Timer timer;
+    private final Timer timer = new Timer();
     private QAMDB5Command drivetrain;
-    private double x;
+    private final double duration;
 
-    public QShakenNotStirredOnCommand(ShakenNotStirredSubsystem intake, QAMDB5Command drivetrain, Timer time, double x){
+    public QShakenNotStirredOnCommand(ShakenNotStirredSubsystem intake, QAMDB5Command drivetrain, double duration){
         this.intake = intake;
         this.drivetrain = drivetrain;
-        this.timer = time;
-        this.x = x;
+        this.duration = duration;
         addRequirements(intake);
     }
 
     @Override
-    public void execute() {
+    public void initialize(){
         if (drivetrain.isFinished()){
-            intake.intakeOn();
-            if (timer.get() - x > 6){
-                intake.intakeOff();
-            }
+            timer.reset();
+            timer.start();
         }
+    }
+
+    @Override
+    public void execute() {
+        intake.intakeOn();
     }
     
     @Override
     public boolean isFinished() {
+        if (timer.get() > duration){
+            intake.intakeOff();
+        }
         return true;
     }
 }
