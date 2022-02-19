@@ -38,15 +38,12 @@ public class QAMDB5Command extends CommandBase {
 
     @Override
     public boolean isFinished() {
-<<<<<<< HEAD
         var leftDistance = drive.getLeftEncoderDistanceInches();
         var rightDistance = drive.getRightEncoderDistanceInches();
-=======
-        var leftDistance = this.drive.getLeftEncoderDistanceInches();
-        var rightDistance = this.drive.getRightEncoderDistanceInches();
+
         System.out.println("left: " + leftDistance);
         System.out.println("right: " + rightDistance);
->>>>>>> 943a9200a554c9664d5b051e49026f417998525e
+
         if (backward){
             return leftDistance <= this.distance || rightDistance <= this.distance;
         }
