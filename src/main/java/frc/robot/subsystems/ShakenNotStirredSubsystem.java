@@ -2,8 +2,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Timer;
 // import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -12,27 +11,22 @@ public class ShakenNotStirredSubsystem extends SubsystemBase{
     private final CANSparkMax wheelMotor = new CANSparkMax(15, MotorType.kBrushless);//tbd
     private final double armSpeed = .10; 
     private final double wheelSpeed = .5; 
-    private final WaitCommand upTime = new WaitCommand(3);
-    private final WaitCommand downTime = new WaitCommand(3);
+    private Timer timer = new Timer();
 
     public void intakeOn(){
+        timer.start();
         wheelMotor.set(wheelSpeed);
         armMotor.set(armSpeed);
-        downTime.initialize();
-        downTime.execute();
-        SmartDashboard.putString("intake timer: ", downTime.toString());
-        if (downTime.isFinished()){
+        if (timer.get() > 1){
             armMotor.stopMotor();
         }
     }
 
     public void intakeUp(){
+        timer.start();
         wheelMotor.set(wheelSpeed);
         armMotor.set(armSpeed*-1.5);
-        upTime.initialize();
-        upTime.execute();
-        SmartDashboard.putString("intake timer: ", upTime.toString());
-        if (upTime.isFinished()){
+        if (timer.get() > 3){
             armMotor.stopMotor();
         }
     }

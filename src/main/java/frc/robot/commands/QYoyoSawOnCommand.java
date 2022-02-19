@@ -7,24 +7,25 @@ import edu.wpi.first.wpilibj.Timer;
 public class QYoyoSawOnCommand extends CommandBase{
     private final GoldenPP7Subsystem shooter;
     private QShakenNotStirredOnCommand intake;
-    private Timer timer = new Timer();
+    private Timer timer;
+    private double x; 
 
-    public QYoyoSawOnCommand(GoldenPP7Subsystem shooter, QShakenNotStirredOnCommand intake){
+    public QYoyoSawOnCommand(GoldenPP7Subsystem shooter, QShakenNotStirredOnCommand intake, Timer time, double x){
         this.shooter = shooter;
         this.intake = intake;
+        this.timer = time;
+        this.x = x;
         addRequirements(shooter);
     }
 
     @Override
     public void initialize(){
-        if (intake.isFinished()){
-            timer.reset();
-            timer.start();
+        if (timer.get() - x > 6){
             shooter.conveyor1On();
-            if (timer.get() > 2){
+            if (timer.get() > 7){
                 shooter.conveyor2On();
             }
-            if (timer.get() > 7){
+            if (timer.get() > 10){
                 shooter.conveyor1Off();
                 shooter.conveyor2Off();
             }
