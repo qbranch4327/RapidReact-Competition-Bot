@@ -22,7 +22,8 @@ public class QAMDB5Command extends CommandBase {
 
     @Override
     public void initialize() {
-        this.drive.resetEncoders();
+        drive.resetEncoders();
+        drive.publishToDashboard();
     }
 
     @Override
@@ -37,8 +38,8 @@ public class QAMDB5Command extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        var leftDistance = this.drive.getLeftEncoderDistanceInches();
-        var rightDistance = this.drive.getRightEncoderDistanceInches();
+        var leftDistance = drive.getLeftEncoderDistanceInches();
+        var rightDistance = drive.getRightEncoderDistanceInches();
         if (backward){
             return leftDistance <= this.distance || rightDistance <= this.distance;
         }

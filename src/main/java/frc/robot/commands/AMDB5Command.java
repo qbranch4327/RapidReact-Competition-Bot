@@ -22,15 +22,27 @@ public class AMDB5Command extends CommandBase {
     public void execute(){
         var percentLeft = controller.getLeftY();
         var percentRight = controller.getRightY();
+        percentLeft *= .8;
+        percentRight *= .8;
         this.drivetrain.publishToDashboard();
         this.drivetrain.setSpeed(percentRight,percentLeft);
         if (controller.getBButton()){
-            player.loadMusic("C:/Users/Jburd/Documents/RapidReact-Competition-Bot/src/main/deploy/song1.chrp");
-            player.play();
+            if (player.isPlaying()){
+                player.stop();
+            }
+            else{
+                player.loadMusic("C:/Users/Jburd/Documents/RapidReact-Competition-Bot/src/main/deploy/song1.chrp");
+                player.play();
+            }
         }
-        // if (controller.getYButton()){
-        //     player.loadMusic("C:/Users/Jburd/Documents/RapidReact-Competition-Bot/src/main/deploy/songwii.chrp");
-        //     player.play();
-        // }
+        if (controller.getYButton()){
+            if (player.isPlaying()){
+                player.stop();
+            }
+            else{
+                player.loadMusic("C:/Users/Jburd/Documents/RapidReact-Competition-Bot/src/main/deploy/songwii.chrp");
+                player.play();
+            }
+        }
     }
 }
