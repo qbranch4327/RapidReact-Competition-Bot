@@ -78,17 +78,18 @@ public class GoldenPP7Subsystem extends SubsystemBase{
 
     public void shooterOn(double velocity){
         double c = 1;
+        double x = (velocity-shooterEncoder.getRate())/velocity;
         shooter1.set(ControlMode.PercentOutput, c);
         shooter2.set(ControlMode.PercentOutput, c);
-        while (shooterEncoder.getRate() < velocity){
+        if (Math.abs(x) < .08){
+            if (shooterEncoder.getRate() > velocity){
+                c -= .05;
+            }
+            else if (shooterEncoder.getRate() < velocity){
+                c += .05;
+            }
             shooter1.set(ControlMode.PercentOutput, c);
             shooter2.set(ControlMode.PercentOutput, c);
-            c += .05;
-        }
-        while (shooterEncoder.getRate() > velocity){
-            shooter1.set(ControlMode.PercentOutput, c);
-            shooter2.set(ControlMode.PercentOutput, c);
-            c -= .05;
         }
     }
 
