@@ -6,14 +6,13 @@ import frc.robot.subsystems.ShakenNotStirredSubsystem;
 
 public class QShakenNotStirredOnCommand extends CommandBase {
     private final ShakenNotStirredSubsystem intake;
-    private final Timer timer = new Timer();
-    private QAMDB5Command drivetrain;
+    private final Timer timer;
     private final double duration;
 
-    public QShakenNotStirredOnCommand(ShakenNotStirredSubsystem intake, QAMDB5Command drivetrain, double duration){
+    public QShakenNotStirredOnCommand(ShakenNotStirredSubsystem intake, double duration){
         this.intake = intake;
-        this.drivetrain = drivetrain;
         this.duration = duration;
+        this.timer = new Timer();
         addRequirements(intake);
     }
 

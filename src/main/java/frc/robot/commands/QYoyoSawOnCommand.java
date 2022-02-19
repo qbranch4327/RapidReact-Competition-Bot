@@ -6,16 +6,15 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class QYoyoSawOnCommand extends CommandBase{
     private final GoldenPP7Subsystem shooter;
-    private QShakenNotStirredOnCommand intake;
-    private Timer timer = new Timer();
+    private Timer timer;
     private final double duration;
     private final double midtime;
 
-    public QYoyoSawOnCommand(GoldenPP7Subsystem shooter, QShakenNotStirredOnCommand intake, double duration, double midtime){
+    public QYoyoSawOnCommand(GoldenPP7Subsystem shooter, double duration, double midtime){
         this.shooter = shooter;
-        this.intake = intake;
         this.duration = duration;
         this.midtime = midtime;
+        this.timer = new Timer();
         addRequirements(shooter);
     }
 

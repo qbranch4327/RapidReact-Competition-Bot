@@ -18,17 +18,12 @@ public class QAI1 extends SequentialCommandGroup {
      * @param drive The drive subsystem this command will run on
      * @param hatch The hatch subsystem this command will run on
      */
-    private Timer time = new Timer();
-
     public QAI1(AMDB5Subsystem drive, ShakenNotStirredSubsystem intake, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter) {
-        time.start();
-        QAMDB5Command driving = new QAMDB5Command(drive, 40.75, .5);
-        QShakenNotStirredOnCommand intaking = new QShakenNotStirredOnCommand(intake, driving, 5);
         addCommands(
-            driving,
-            intaking,
+            new QAMDB5Command(drive, 40.75, .5),
+            new QShakenNotStirredOnCommand(intake, 5),
             //new QSpikeFanOnCommand(shooter, vision),
-            new QYoyoSawOnCommand(shooter, intaking, 6, 3)
+            new QYoyoSawOnCommand(shooter, 6, 3)
         );
     }
 }
