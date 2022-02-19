@@ -23,13 +23,12 @@ public class QAI1 extends SequentialCommandGroup {
     public QAI1(AMDB5Subsystem drive, ShakenNotStirredSubsystem intake, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter) {
         time.start();
         QAMDB5Command driving = new QAMDB5Command(drive, 40.75, .5);
-        QShakenNotStirredOnCommand intaking = new QShakenNotStirredOnCommand(intake, driving, 5000);
+        QShakenNotStirredOnCommand intaking = new QShakenNotStirredOnCommand(intake, driving, 5);
         addCommands(
             driving,
             intaking,
             //new QSpikeFanOnCommand(shooter, vision),
-            new QGoldenPP7OnCommand(shooter, intaking, 6000),
-            new QYoyoSawOnCommand(shooter, intaking, 6000)
+            new QYoyoSawOnCommand(shooter, intaking, 6, 3)
         );
     }
 }

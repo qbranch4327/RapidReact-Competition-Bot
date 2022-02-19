@@ -87,7 +87,8 @@ public class QGoldenPP7OnCommand extends CommandBase {
     public boolean isFinished(){
         if (timer.get() > duration){
             shooter.shooterOff();
+            return true;
         }
-        return true;
+        return false;
     }
 }

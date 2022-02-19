@@ -19,10 +19,8 @@ public class QShakenNotStirredOnCommand extends CommandBase {
 
     @Override
     public void initialize(){
-        if (drivetrain.isFinished()){
-            timer.reset();
-            timer.start();
-        }
+        timer.reset();
+        timer.start();
     }
 
     @Override
@@ -34,7 +32,8 @@ public class QShakenNotStirredOnCommand extends CommandBase {
     public boolean isFinished() {
         if (timer.get() > duration){
             intake.intakeOff();
+            return true;
         }
-        return true;
+        return false;
     }
 }

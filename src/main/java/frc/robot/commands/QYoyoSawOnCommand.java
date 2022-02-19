@@ -9,26 +9,29 @@ public class QYoyoSawOnCommand extends CommandBase{
     private QShakenNotStirredOnCommand intake;
     private Timer timer = new Timer();
     private final double duration;
+    private final double midtime;
 
-    public QYoyoSawOnCommand(GoldenPP7Subsystem shooter, QShakenNotStirredOnCommand intake, double duration){
+    public QYoyoSawOnCommand(GoldenPP7Subsystem shooter, QShakenNotStirredOnCommand intake, double duration, double midtime){
         this.shooter = shooter;
         this.intake = intake;
         this.duration = duration;
+        this.midtime = midtime;
         addRequirements(shooter);
     }
 
     @Override
     public void initialize(){
-        if (intake.isFinished()){
-            timer.reset();
-            timer.start();
-        }
+        timer.reset();
+        timer.start();
     }
 
     @Override
     public void execute(){
+        shooter.shooterOn(400);
         shooter.conveyor1On();
-        shooter.conveyor2On();
+        if (timer.get() > midtime){
+            shooter.conveyor2On();
+        }
     }
 
     @Override
@@ -36,7 +39,9 @@ public class QYoyoSawOnCommand extends CommandBase{
         if (timer.get() > duration) {
             shooter.conveyor1Off();
             shooter.conveyor2Off();
+            shooter.shooterOff();
+            return true;
         }
-        return true;
+        return false;
     }
 }
