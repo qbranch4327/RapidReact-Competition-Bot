@@ -24,11 +24,11 @@ public class AMDB5Command extends CommandBase {
         var percentRight = controller.getRightY();
         this.drivetrain.publishToDashboard();
         this.drivetrain.setSpeed(percentRight,percentLeft);
-        if (controller.getAButton()){
+        if (controller.getBButton()){
             player.loadMusic("C:/Users/Jburd/Documents/RapidReact-Competition-Bot/src/main/deploy/song1.chrp");
             player.play();
         }
-        // if (controller.getXButton()){
+        // if (controller.getYButton()){
         //     player.loadMusic("C:/Users/Jburd/Documents/RapidReact-Competition-Bot/src/main/deploy/songwii.chrp");
         //     player.play();
         // }

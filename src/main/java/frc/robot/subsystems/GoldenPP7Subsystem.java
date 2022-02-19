@@ -93,7 +93,7 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     }
 
     public void shooterOff(){
-        shooter1.set(ControlMode.Velocity, 0);
-        shooter2.set(ControlMode.Velocity, 0);
+        shooter1.set(ControlMode.PercentOutput, 0);
+        shooter2.set(ControlMode.PercentOutput, 0);
     }
 }
