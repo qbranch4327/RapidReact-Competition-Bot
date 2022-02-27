@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.Encoder;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import java.lang.ModuleLayer.Controller;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -34,7 +36,7 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     }
 
     public void conveyor1On(){
-        conveyor1.set(-.8);
+        conveyor1.set(-1);
     }
     
     public void conveyor1Off(){
@@ -50,6 +52,15 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     public void conveyor2Off(){
         conveyor2.stopMotor();
 
+    }
+
+    public void conveyor1On(boolean direction){
+        if (direction){
+            conveyor1.set(-1);
+        }
+        else {
+            conveyor1.set(1);
+        }
     }
 
     public void indexer60(){

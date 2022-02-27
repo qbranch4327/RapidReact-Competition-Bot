@@ -19,11 +19,16 @@ public class AMDB5Command extends CommandBase {
     }
 
     @Override
+    public void initialize(){
+        drivetrain.resetEncoders();
+    }
+
+    @Override
     public void execute(){
         var percentLeft = controller.getLeftY();
         var percentRight = controller.getRightY();
-        percentLeft *= .8;
-        percentRight *= .8;
+        percentLeft *= .3;
+        percentRight *= .3;
         this.drivetrain.publishToDashboard();
         this.drivetrain.setSpeed(percentRight,percentLeft);
         if (controller.getBButton()){

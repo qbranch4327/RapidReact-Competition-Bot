@@ -4,13 +4,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.GoldenPP7Subsystem;
 import edu.wpi.first.wpilibj.Timer;
 
-public class QYoyoSawOnCommand extends CommandBase{
+public class QYoyoSawCommand extends CommandBase{
     private final GoldenPP7Subsystem shooter;
     private Timer timer;
     private final double duration;
     private final double midtime;
 
-    public QYoyoSawOnCommand(GoldenPP7Subsystem shooter, double duration, double midtime){
+    public QYoyoSawCommand(GoldenPP7Subsystem shooter, double duration, double midtime){
         this.shooter = shooter;
         this.duration = duration;
         this.midtime = midtime;
@@ -26,8 +26,8 @@ public class QYoyoSawOnCommand extends CommandBase{
 
     @Override
     public void execute(){
-        shooter.shooterOn(400);
         shooter.conveyor1On();
+        shooter.shooterOn(1600);
         if (timer.get() > midtime){
             shooter.conveyor2On();
         }

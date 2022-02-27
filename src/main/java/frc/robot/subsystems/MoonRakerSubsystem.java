@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MoonRakerSubsystem extends SubsystemBase {
     private NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -21,6 +22,11 @@ public class MoonRakerSubsystem extends SubsystemBase {
 
     public MoonRakerSubsystem(){
 
+    }
+
+    public void update(){
+        SmartDashboard.putNumber("tx", x);
+        SmartDashboard.putNumber("ty", y);
     }
 
     public double getX(){

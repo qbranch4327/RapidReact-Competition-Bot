@@ -79,16 +79,19 @@ public class GoldenPP7Command extends CommandBase {
         // }
 
         if (controller2.getAButton()){
-            shooter.shooterOn(velocity);
+            shooter.shooterOn(800);
         }
         else {
             shooter.shooterOff();
         }
         
-        if (controller2.getXButton()){
-            shooter.conveyor1On();
+        if (controller2.getRightY() > 0.09){
+            shooter.conveyor1On(false);
         }
-        else {
+        else if (controller2.getRightY() < -0.09){
+            shooter.conveyor1On(true);
+        }
+        else{
             shooter.conveyor1Off();
         }
 
@@ -112,18 +115,22 @@ public class GoldenPP7Command extends CommandBase {
             shooter.turretOff();
         }
 
-        // if (vision.getX() < -5){
-        //     while (vision.getX() < -5){
-        //         shooter.turretCCW();
-        //     }
-        // }
-        // else if (vision.getX() > 5){
-        //     while (vision.getX() > 5){
-        //          shooter.turretCW();
-        //     }
-        // }
-        // else {
-        //     shooter.turretOff();;
-        // }
+        if (controller2.getRightBumper()){
+            if (vision.getX() < -5){
+                while (vision.getX() < -5){
+                    shooter.turretCCW();
+                }
+            }
+            else if (vision.getX() > 5){
+                while (vision.getX() > 5){
+                     shooter.turretCW();
+                }
+            }
+            else {
+                shooter.turretOff();;
+            }
+        }
+
+        
     }
 }

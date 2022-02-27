@@ -4,12 +4,12 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShakenNotStirredSubsystem;
 
-public class QShakenNotStirredOnCommand extends CommandBase {
+public class QShakenNotStirredCommand extends CommandBase {
     private final ShakenNotStirredSubsystem intake;
     private final Timer timer;
     private final double duration;
 
-    public QShakenNotStirredOnCommand(ShakenNotStirredSubsystem intake, double duration){
+    public QShakenNotStirredCommand(ShakenNotStirredSubsystem intake, double duration){
         this.intake = intake;
         this.duration = duration;
         this.timer = new Timer();

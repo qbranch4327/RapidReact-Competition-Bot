@@ -69,6 +69,15 @@ public class AMDB5Subsystem extends SubsystemBase {
         else {
             driveMotorLeftA.set(ControlMode.PercentOutput, 0);
         }
+
+        double difference = rightEncoder.getDistance() - leftEncoder.getDistance();
+        double percent = Math.abs((rightEncoder.getDistance() + leftEncoder.getDistance())/rightEncoder.getDistance());
+        if (difference > 0 && percent > .05){
+            rightSpeed -= .05;
+        }
+        if (difference < 0 && percent > .05){
+            leftSpeed -= .05;
+        }
     }
 
     public void resetEncoders() {

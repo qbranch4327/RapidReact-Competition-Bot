@@ -21,9 +21,9 @@ public class QAI1 extends SequentialCommandGroup {
     public QAI1(AMDB5Subsystem drive, ShakenNotStirredSubsystem intake, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter) {
         addCommands(
             new QAMDB5Command(drive, 40.75, .5),
-            new QShakenNotStirredOnCommand(intake, 5),
+            new QShakenNotStirredCommand(intake, 5),
             //new QSpikeFanOnCommand(shooter, vision),
-            new QYoyoSawOnCommand(shooter, 6, 3)
+            new QYoyoSawCommand(shooter, 6, 3)
         );
     }
 }

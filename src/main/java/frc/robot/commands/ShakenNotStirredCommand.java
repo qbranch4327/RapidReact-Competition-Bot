@@ -16,11 +16,11 @@ public class ShakenNotStirredCommand extends CommandBase {
 
     @Override
     public void execute(){
-        if (controller2.getRightBumper()){
-            intake.intakeOn();
+        if (controller2.getLeftY() > 0.09){
+            intake.intakeOn(false);
         }
-        else if (controller2.getLeftBumper()){
-            intake.intakeUp();
+        else if (controller2.getLeftY() < -0.09){
+            intake.intakeOn(true);
         }
         else{
             intake.intakeOff();

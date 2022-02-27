@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Timer;
 public class QGoldenPP7OnCommand extends CommandBase {
     private final GoldenPP7Subsystem shooter;
     private MoonRakerSubsystem vision = null;
-    private QShakenNotStirredOnCommand intake;
+    private QShakenNotStirredCommand intake;
 
     private final double d1 = 1;
     private final double d2 = 2;
@@ -24,9 +24,9 @@ public class QGoldenPP7OnCommand extends CommandBase {
     private Timer timer = new Timer();
     private final double duration;
 
-    private double velocity = ips2;
+    private double velocity = ips3;
 
-    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, MoonRakerSubsystem vision, QShakenNotStirredOnCommand intake, double duration){
+    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, MoonRakerSubsystem vision, QShakenNotStirredCommand intake, double duration){
         this.shooter = shooter;
         this.vision = vision;
         this.intake = intake;
@@ -35,7 +35,7 @@ public class QGoldenPP7OnCommand extends CommandBase {
         addRequirements(vision);
     }
 
-    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, QShakenNotStirredOnCommand intake, double duration){
+    public QGoldenPP7OnCommand(GoldenPP7Subsystem shooter, QShakenNotStirredCommand intake, double duration){
         this.shooter = shooter;
         this.intake = intake;
         this.duration = duration;
@@ -81,6 +81,7 @@ public class QGoldenPP7OnCommand extends CommandBase {
         if (intake.isFinished()){
             shooter.shooterOn(velocity);
         } 
+        vision.update();
     }
 
     @Override

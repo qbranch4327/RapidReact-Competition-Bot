@@ -13,6 +13,21 @@ public class ShakenNotStirredSubsystem extends SubsystemBase{
     private final double wheelSpeed = .5; 
     private Timer timer = new Timer();
 
+    public void intakeOn(boolean direction){
+        timer.start();
+        if (direction){
+            wheelMotor.set(wheelSpeed);
+            armMotor.set(armSpeed);
+        }
+        else{
+            wheelMotor.set(-wheelSpeed);
+            armMotor.set(-armSpeed);
+        }
+        if (timer.get() > 1){
+            armMotor.stopMotor();
+        }
+    }
+
     public void intakeOn(){
         timer.start();
         wheelMotor.set(wheelSpeed);
