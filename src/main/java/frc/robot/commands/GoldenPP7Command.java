@@ -104,18 +104,18 @@ public class GoldenPP7Command extends CommandBase {
 
         }
         
-        if (controller2.getBButton()){
+        if (controller2.getRightBumper()){
             shooter.turretCW();
         }
         
-        else if (controller2.getYButton()){
+        else if (controller2.getLeftBumper()){
             shooter.turretCCW();
         }
         else {
             shooter.turretOff();
         }
 
-        if (controller2.getRightBumper()){
+        if (controller2.getYButton()){
             if (vision.getX() < -5){
                 while (vision.getX() < -5){
                     shooter.turretCCW();
