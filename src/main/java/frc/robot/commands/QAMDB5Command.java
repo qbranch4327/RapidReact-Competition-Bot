@@ -29,6 +29,7 @@ public class QAMDB5Command extends CommandBase {
 
     @Override
     public void execute() {
+        drive.publishToDashboard();
         if (!backward){
             drive.setSpeed(speed, speed+.0075);
         }
@@ -45,7 +46,7 @@ public class QAMDB5Command extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        
+        drive.publishToDashboard();
         if (backward){
             if (leftDistance <= this.distance || rightDistance <= this.distance){
                 drive.setSpeed(0, 0);

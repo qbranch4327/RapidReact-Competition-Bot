@@ -7,12 +7,11 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.SkyHookCommand;
-import frc.robot.QAIModes.QAI1;
+//import frc.robot.QAIModes.QAI1;
 import frc.robot.QAIModes.QAI2;
 import frc.robot.commands.AMDB5Command;
 import frc.robot.commands.ShakenNotStirredCommand;
 import frc.robot.commands.GoldenPP7Command;
-import frc.robot.commands.QSpikeFanOffCommand;
 import frc.robot.commands.QSpikeFanOnCommand;
 import frc.robot.subsystems.SkyHookSubsystem;
 import frc.robot.subsystems.AMDB5Subsystem;
@@ -70,8 +69,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     Button visionButton = new JoystickButton(controller1, XboxController.Button.kBack.value);
     visionButton
-      .whenPressed(new QSpikeFanOnCommand(shooter, vision))
-      .whenReleased(new QSpikeFanOffCommand(shooter));
+      .whenPressed(new QSpikeFanOnCommand(shooter, vision));
   }
 
   /**

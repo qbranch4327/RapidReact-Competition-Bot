@@ -7,34 +7,41 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MoonRakerSubsystem extends SubsystemBase {
-    private NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    private NetworkTableEntry tx = table.getEntry("tx");
-    private NetworkTableEntry ty = table.getEntry("ty");
+    private final double h1 = 32.5;
+    private final double h2 = 104;
+    private final double a1 = 43.6;
+    private double x;
+    private double y;
+    private double d;
+    private NetworkTableEntry tx;
+    private NetworkTableEntry ty;
 
-    //read values periodically
-    private double x = tx.getDouble(0.0);
-    private double y = ty.getDouble(0.0);
-
-    private double h1 = 48; //needs to be updated when placed on the robot
-    private double h2 = 104;
-    private double a1 = 45; //needs to be updated when placed on the robot
-
-
-    public MoonRakerSubsystem(){
+    public MoonRakerSubsystem() {
 
     }
 
-    public void update(){
+    public void publishToDashboard() {
+        // read values periodically
         SmartDashboard.putNumber("tx", x);
         SmartDashboard.putNumber("ty", y);
+        SmartDashboard.putNumber("Distance", d);
     }
 
-    public double getX(){
+    public void update() {
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        tx = table.getEntry("tx");
+        ty = table.getEntry("ty");
+        x = tx.getDouble(0.0);
+        y = ty.getDouble(0.0);
+        publishToDashboard();
+    }
+
+    public double getX() {
         return x;
     }
 
-    public double getDistance(){
-        double d = (h1-h2)/Math.tan(a1+y);
+    public double getDistance() {
+        d = (h2 - h1) / (Math.tan((a1 + y)));
         return d;
     }
 }

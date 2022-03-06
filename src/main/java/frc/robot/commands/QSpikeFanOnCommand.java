@@ -33,6 +33,9 @@ public class QSpikeFanOnCommand extends CommandBase {
     }
     @Override
     public boolean isFinished() {
-        return true;
+        if (vision.getX() < 5 && vision.getX() > -5){
+            return true;
+        }
+        return false;
     }
 }

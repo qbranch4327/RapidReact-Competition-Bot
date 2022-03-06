@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
@@ -43,7 +44,6 @@ public class AMDB5Subsystem extends SubsystemBase {
 
     //    driveMotorLeftA.setInverted(TalonFXInvertType.Clockwise);
         driveMotorRightA.setInverted(TalonFXInvertType.Clockwise);
-
         driveMotorRightB.follow(driveMotorRightA);
         driveMotorLeftB.follow(driveMotorLeftA);
 
@@ -91,6 +91,20 @@ public class AMDB5Subsystem extends SubsystemBase {
 
     public double getRightEncoderDistanceInches() {
         return this.rightEncoder.getDistance();
+    }
+
+    public void switchToBrakeMode() {
+        driveMotorLeftA.setNeutralMode(NeutralMode.Brake);
+        driveMotorLeftB.setNeutralMode(NeutralMode.Brake);
+        driveMotorRightA.setNeutralMode(NeutralMode.Brake);
+        driveMotorRightB.setNeutralMode(NeutralMode.Brake);
+    }
+
+    public void switchToCoastMode() {
+        driveMotorLeftA.setNeutralMode(NeutralMode.Coast);
+        driveMotorLeftB.setNeutralMode(NeutralMode.Coast);
+        driveMotorRightA.setNeutralMode(NeutralMode.Coast);
+        driveMotorRightB.setNeutralMode(NeutralMode.Coast);
     }
 
     public void publishToDashboard() {

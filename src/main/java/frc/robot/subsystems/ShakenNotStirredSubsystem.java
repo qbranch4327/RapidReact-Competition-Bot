@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class ShakenNotStirredSubsystem extends SubsystemBase{
     private final CANSparkMax   armMotor = new CANSparkMax(16, MotorType.kBrushless);//tbd
     private final CANSparkMax wheelMotor = new CANSparkMax(15, MotorType.kBrushless);//tbd
-    private final double armSpeed = .10; 
-    private final double wheelSpeed = .5; 
+    private final double armSpeed = .1; 
+    private final double wheelSpeed = 1; 
     private Timer timer = new Timer();
 
     public void intakeOn(boolean direction){

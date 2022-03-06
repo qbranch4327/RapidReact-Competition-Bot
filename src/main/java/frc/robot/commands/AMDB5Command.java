@@ -29,6 +29,7 @@ public class AMDB5Command extends CommandBase {
         var percentRight = controller.getRightY();
         percentLeft *= .6;
         percentRight *= .6;
+
         this.drivetrain.publishToDashboard();
         this.drivetrain.setSpeed(percentRight,percentLeft);
         if (controller.getBButton()){
@@ -36,7 +37,7 @@ public class AMDB5Command extends CommandBase {
                 player.stop();
             }
             else{
-                player.loadMusic("C:/Users/Jburd/Documents/RapidReact-Competition-Bot/src/main/deploy/song1.chrp");
+                player.loadMusic("src/main/deploy/song1.chrp");
                 player.play();
             }
         }
@@ -45,7 +46,7 @@ public class AMDB5Command extends CommandBase {
                 player.stop();
             }
             else{
-                player.loadMusic("C:/Users/Jburd/Documents/RapidReact-Competition-Bot/src/main/deploy/songwii.chrp");
+                player.loadMusic("src/main/deploy/songwii.chrp");
                 player.play();
             }
         }

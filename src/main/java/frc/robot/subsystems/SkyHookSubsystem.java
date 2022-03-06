@@ -8,21 +8,20 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 public class SkyHookSubsystem extends SubsystemBase{
     private TalonFX climbmotorL = new TalonFX(30);
     private TalonFX climbmotorR = new TalonFX(40);
-    private final double deadzone = .2;
 
-    public void setspeed(double climbSpeedUp, double climbSpeedDown){
-        if (climbSpeedUp > deadzone){
-            climbmotorR.set(ControlMode.PercentOutput, .2);
-            climbmotorL.set(ControlMode.PercentOutput, .2);
+    public void setspeed(boolean climbSpeedUp, boolean climbSpeedDown){
+        if (climbSpeedUp){
+            climbmotorR.set(ControlMode.PercentOutput, 1);
+            climbmotorL.set(ControlMode.PercentOutput, 1);
         }
-        else if (climbSpeedDown > deadzone){
-            climbmotorR.set(ControlMode.PercentOutput, -.2);
-            climbmotorL.set(ControlMode.PercentOutput, -0.2);
+        else if (climbSpeedDown){
+            climbmotorR.set(ControlMode.PercentOutput, -1);
+            climbmotorL.set(ControlMode.PercentOutput, -1);
 
         }
-        else
+        else {
            climbmotorR.set(ControlMode.PercentOutput, 0);
            climbmotorL.set(ControlMode.PercentOutput, 0);
-
+        }
     }
 }

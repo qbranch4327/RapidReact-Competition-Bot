@@ -15,9 +15,8 @@ public class SkyHookCommand extends CommandBase {
 
     @Override
     public void execute(){
-        var percentUp = controller1.getRightTriggerAxis();
-        var percentDown = controller1.getLeftTriggerAxis();
-        percentUp *= -1;
-        this.climber.setspeed(percentUp,percentDown);
+        var climbSpeedUp = controller1.getRightBumper();
+        var climbSpeedDown = controller1.getLeftBumper();
+        this.climber.setspeed(climbSpeedUp,climbSpeedDown);
     }
 }

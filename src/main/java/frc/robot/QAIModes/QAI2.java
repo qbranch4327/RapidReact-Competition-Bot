@@ -2,7 +2,6 @@ package frc.robot.QAIModes;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.QAMDB5Command;
-import frc.robot.commands.QGoldenPP7OnCommand;
 import frc.robot.commands.QShakenNotStirredCommand;
 import frc.robot.commands.QYoyoSawCommand;
 import frc.robot.subsystems.AMDB5Subsystem;
@@ -22,13 +21,14 @@ public class QAI2 extends SequentialCommandGroup {
    * @param hatch The hatch subsystem this command will run on
    */
   public QAI2(AMDB5Subsystem drive, ShakenNotStirredSubsystem intake, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter) {
+    drive.switchToBrakeMode();
     addCommands(
-      new QYoyoSawCommand(shooter, 5, .2),
-      new QAMDB5Command(drive, 40.75, .3),
-      new QShakenNotStirredCommand(intake, 4),
-      new QAMDB5Command(drive, -40.75, .2),
-      new QYoyoSawCommand(shooter, 5, 3)
-      
+      new QYoyoSawCommand(shooter, 4, 2),
+      new QAMDB5Command(drive, 20, .3),
+      new QShakenNotStirredCommand(intake, 2.5),
+      new QAMDB5Command(drive, -50.75, .2),
+      new QYoyoSawCommand(shooter, 4, 2)
     );
+    drive.switchToCoastMode();
   }
 }

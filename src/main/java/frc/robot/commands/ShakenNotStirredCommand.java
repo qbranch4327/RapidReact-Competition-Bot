@@ -16,10 +16,10 @@ public class ShakenNotStirredCommand extends CommandBase {
 
     @Override
     public void execute(){
-        if (controller2.getLeftY() > 0.09){
+        if (controller2.getRightY() > 0.09){
             intake.intakeOn(false);
         }
-        else if (controller2.getLeftY() < -0.09){
+        else if (controller2.getRightY() < -0.09){
             intake.intakeOn(true);
         }
         else{
