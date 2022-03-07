@@ -19,17 +19,12 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     private CANSparkMax conveyor1 = new CANSparkMax(14, MotorType.kBrushless);
     private CANSparkMax conveyor2 = new CANSparkMax(17, MotorType.kBrushless);
 
-    private final MoonRakerSubsystem vision;
     private final Encoder shooterEncoder = new Encoder(4, 5);
         
     // public void update(){
     //     System.out.println(vision.getX());
     // }
     public GoldenPP7Subsystem(){
-        this.vision = null;
-    }
-    public GoldenPP7Subsystem(MoonRakerSubsystem vision){
-        this.vision = vision;
     }
 
     public void conveyor1On(){
