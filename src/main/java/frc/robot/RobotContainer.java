@@ -2,12 +2,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.SkyHookCommand;
-//import frc.robot.QAIModes.QAI1;
+import frc.robot.QAIModes.QAI1;
 import frc.robot.QAIModes.QAI2;
 import frc.robot.commands.AMDB5Command;
 import frc.robot.commands.ShakenNotStirredCommand;
@@ -34,7 +36,10 @@ public class RobotContainer {
   private final GoldenPP7Subsystem shooter;
   private final MoonRakerSubsystem vision;
   
-  private final Command m_autoCommand;
+  //private final Command m_autoCommand;
+  SendableChooser<Command> qChooser = new SendableChooser<>();
+  // Add commands to the autonomous command chooser
+  
   
 
 
@@ -49,7 +54,8 @@ public class RobotContainer {
     this.vision = new MoonRakerSubsystem();
     this.shooter = new GoldenPP7Subsystem();
     
-    this.m_autoCommand = new QAI2(driveTrain, intake, vision, shooter);
+    Command regular = new QAI2(driveTrain, intake, vision, shooter);
+    Command shortauton = new QAI1(driveTrain, intake, vision, shooter);
     
     driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,controller1));
     climb.setDefaultCommand(new SkyHookCommand(climb, controller2));
@@ -58,6 +64,12 @@ public class RobotContainer {
 
 
     configureButtonBindings();
+
+    qChooser.setDefaultOption("Regular Auton", regular);
+    qChooser.addOption("Short Auton (for the wall)", shortauton);
+
+  // Put the chooser on the dashboard
+    SmartDashboard.putData(qChooser);
   }
 
   /**
@@ -79,6 +91,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return qChooser.getSelected();
   }
 }
