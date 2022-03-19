@@ -22,7 +22,7 @@ public class QAI1 extends SequentialCommandGroup {
             new QYoyoSawCommand(shooter, 4, 2),
             new QAMDB5Command(drive, 20, .3),
             new QShakenNotStirredCommand(intake, 2.5),
-            new QAMDB5Command(drive, -30.75, .2),
+            new QAMDB5Command(drive, -25.75, .2),
             new QYoyoSawCommand(shooter, 4, 2)
         );
     }
