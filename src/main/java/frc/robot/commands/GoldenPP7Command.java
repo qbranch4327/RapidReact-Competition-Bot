@@ -5,13 +5,14 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick; 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.GoldenPP7Subsystem;
 import frc.robot.subsystems.MoonRakerSubsystem;
 
 public class GoldenPP7Command extends CommandBase {
-    private final XboxController controller1;
+    private final Joystick rightJoystick;
     private final XboxController controller2;
     private final GoldenPP7Subsystem shooter;
     private MoonRakerSubsystem vision = null;
@@ -21,18 +22,18 @@ public class GoldenPP7Command extends CommandBase {
     
     private double velocity = 800;
 
-    public GoldenPP7Command(GoldenPP7Subsystem shooter, XboxController controller1, XboxController controller2, MoonRakerSubsystem vision){
+    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick rightJoystick, XboxController controller2, MoonRakerSubsystem vision){
         this.shooter = shooter;
-        this.controller1 = controller1;
+        this.rightJoystick = rightJoystick;
         this.controller2 = controller2;
         this.vision = vision;
         addRequirements(shooter);
         addRequirements(vision);
     }
 
-    public GoldenPP7Command(GoldenPP7Subsystem shooter, XboxController controller1, XboxController controller2){
+    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick rightJoystick, XboxController controller2){
         this.shooter = shooter;
-        this.controller1 = controller1;
+        this.rightJoystick = rightJoystick;
         this.controller2 = controller2;
         addRequirements(shooter);
     }
@@ -67,7 +68,7 @@ public class GoldenPP7Command extends CommandBase {
             shooter.conveyor1Off();
         }
 
-        if (controller1.getXButton()){
+        if (rightJoystick.getTrigger()){
             shooter.conveyor2On();
 
         }

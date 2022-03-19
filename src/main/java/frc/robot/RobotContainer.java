@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj.Joystick; 
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -28,8 +29,9 @@ import frc.robot.subsystems.MoonRakerSubsystem;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  private final XboxController controller1;
   private final XboxController controller2;
+  private final Joystick leftJoystick;
+  private final Joystick rightJoystick;
   private final AMDB5Subsystem driveTrain;
   private final SkyHookSubsystem climb;
   private final ShakenNotStirredSubsystem intake;
@@ -46,8 +48,9 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    this.controller1 = new XboxController(0);
-    this.controller2 = new XboxController(1);
+    this.leftJoystick = new Joystick(0);
+    this.rightJoystick = new Joystick(1);
+    this.controller2 = new XboxController(2);
     this.driveTrain = new AMDB5Subsystem();
     this.climb = new SkyHookSubsystem();
     this.intake = new ShakenNotStirredSubsystem();
@@ -57,10 +60,10 @@ public class RobotContainer {
     Command regular = new QAI2(driveTrain, intake, vision, shooter);
     Command shortauton = new QAI1(driveTrain, intake, vision, shooter);
     
-    driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,controller1));
-    climb.setDefaultCommand(new SkyHookCommand(climb, controller2));
+    driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,leftJoystick,rightJoystick));
+    climb.setDefaultCommand(new SkyHookCommand(climb, leftJoystick, rightJoystick));
     intake.setDefaultCommand(new ShakenNotStirredCommand(intake, controller2));
-    shooter.setDefaultCommand(new GoldenPP7Command(shooter, controller1, controller2, vision));
+    shooter.setDefaultCommand(new GoldenPP7Command(shooter, rightJoystick, controller2, vision));
 
 
     configureButtonBindings();
