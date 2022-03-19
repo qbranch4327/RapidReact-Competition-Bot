@@ -4,14 +4,13 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-// import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.Joystick; 
-import edu.wpi.first.wpilibj2.command.button.Button;
+// import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+// import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.SkyHookCommand;
-import frc.robot.QAIModes.QAI1;
-import frc.robot.QAIModes.QAI2;
+import frc.robot.QAIModes.QAIShort;
+import frc.robot.QAIModes.QAIRegular;
 import frc.robot.commands.AMDB5Command;
 import frc.robot.commands.ShakenNotStirredCommand;
 import frc.robot.commands.GoldenPP7Command;
@@ -57,13 +56,13 @@ public class RobotContainer {
     this.vision = new MoonRakerSubsystem();
     this.shooter = new GoldenPP7Subsystem();
     
-    Command regular = new QAI2(driveTrain, intake, vision, shooter);
-    Command shortauton = new QAI1(driveTrain, intake, vision, shooter);
+    Command regular = new QAIRegular(driveTrain, intake, vision, shooter);
+    Command shortauton = new QAIShort(driveTrain, intake, vision, shooter);
     
     driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,leftJoystick,rightJoystick));
     climb.setDefaultCommand(new SkyHookCommand(climb, leftJoystick, rightJoystick));
     intake.setDefaultCommand(new ShakenNotStirredCommand(intake, controller2));
-    shooter.setDefaultCommand(new GoldenPP7Command(shooter, rightJoystick, controller2, vision));
+    shooter.setDefaultCommand(new GoldenPP7Command(shooter, leftJoystick, controller2, vision));
 
 
     configureButtonBindings();
@@ -82,9 +81,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    Button visionButton = new JoystickButton(controller1, XboxController.Button.kBack.value);
-    visionButton
-      .whenPressed(new QSpikeFanOnCommand(shooter, vision));
+    // Button visionButton = new JoystickButton(controller1, XboxController.Button.kBack.value);
+    // visionButton
+    //   .whenPressed(new QSpikeFanOnCommand(shooter, vision));
   }
 
   /**

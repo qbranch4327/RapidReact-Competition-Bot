@@ -20,8 +20,8 @@ public class SkyHookCommand extends CommandBase {
 
     @Override
     public void execute(){
-        var climbSpeedUp = rightJoystick.getTop();
-        var climbSpeedDown = leftJoystick.getTop();
+        var climbSpeedUp = rightJoystick.getRawButton(2);
+        var climbSpeedDown = rightJoystick.getRawButton(3);
         this.climber.setspeed(climbSpeedUp,climbSpeedDown);
     }
 }

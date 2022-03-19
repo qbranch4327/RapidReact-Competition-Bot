@@ -13,15 +13,14 @@ import frc.robot.subsystems.ShakenNotStirredSubsystem;
  * A complex auto command that drives forward, releases a hatch, and then drives
  * backward.
  */
-public class QAI2 extends SequentialCommandGroup {
+public class QAIRegular extends SequentialCommandGroup {
   /**
    * Creates a new ComplexAuto.
    *
    * @param drive The drive subsystem this command will run on
    * @param hatch The hatch subsystem this command will run on
    */
-  public QAI2(AMDB5Subsystem drive, ShakenNotStirredSubsystem intake, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter) {
-    drive.switchToBrakeMode();
+  public QAIRegular(AMDB5Subsystem drive, ShakenNotStirredSubsystem intake, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter) {
     addCommands(
       new QYoyoSawCommand(shooter, 4, 2),
       new QAMDB5Command(drive, 20, .3),
@@ -29,6 +28,5 @@ public class QAI2 extends SequentialCommandGroup {
       new QAMDB5Command(drive, -40.75, .2),
       new QYoyoSawCommand(shooter, 4, 2)
     );
-    drive.switchToCoastMode();
   }
 }

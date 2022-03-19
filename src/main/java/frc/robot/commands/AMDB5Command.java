@@ -29,7 +29,7 @@ public class AMDB5Command extends CommandBase {
     @Override
     public void execute(){
         double percentLeft = leftJoystick.getY();
-        double percentLeft = rightJoystick.getY();
+        double percentRight = rightJoystick.getY();
         percentLeft *= .6;
         percentRight *= .6;
 

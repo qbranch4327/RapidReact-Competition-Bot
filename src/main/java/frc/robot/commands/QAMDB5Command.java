@@ -25,6 +25,7 @@ public class QAMDB5Command extends CommandBase {
     public void initialize() {
         drive.resetEncoders();
         drive.publishToDashboard();
+        drive.switchToBrakeMode();
     }
 
     @Override
@@ -50,12 +51,14 @@ public class QAMDB5Command extends CommandBase {
         if (backward){
             if (leftDistance <= this.distance || rightDistance <= this.distance){
                 drive.setSpeed(0, 0);
+                drive.switchToCoastMode();
                 return leftDistance <= this.distance || rightDistance <= this.distance;
             }
         }
         if (!backward){
             if (leftDistance >= this.distance || rightDistance >= this.distance){
                 drive.setSpeed(0, 0);
+                drive.switchToCoastMode();
                 return leftDistance >= this.distance || rightDistance >= this.distance;
             }
         }

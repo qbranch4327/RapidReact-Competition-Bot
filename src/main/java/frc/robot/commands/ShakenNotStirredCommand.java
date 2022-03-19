@@ -5,21 +5,21 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShakenNotStirredSubsystem;
 
 public class ShakenNotStirredCommand extends CommandBase {
-    private final XboxController controller2;
+    private final XboxController controller;
     private final ShakenNotStirredSubsystem intake;
 
-    public ShakenNotStirredCommand(ShakenNotStirredSubsystem intake, XboxController controller2){
-        this.controller2 = controller2;
+    public ShakenNotStirredCommand(ShakenNotStirredSubsystem intake, XboxController controller){
+        this.controller = controller;
         this.intake = intake;
         addRequirements(intake);
     }
 
     @Override
     public void execute(){
-        if (controller2.getRightY() > 0.09){
+        if (controller.getRightY() > 0.09){
             intake.intakeOn(false);
         }
-        else if (controller2.getRightY() < -0.09){
+        else if (controller.getRightY() < -0.09){
             intake.intakeOn(true);
         }
         else{

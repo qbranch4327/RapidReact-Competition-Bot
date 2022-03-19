@@ -12,7 +12,7 @@ import frc.robot.subsystems.GoldenPP7Subsystem;
 import frc.robot.subsystems.MoonRakerSubsystem;
 
 public class GoldenPP7Command extends CommandBase {
-    private final Joystick rightJoystick;
+    private final Joystick leftJoystick;
     private final XboxController controller2;
     private final GoldenPP7Subsystem shooter;
     private MoonRakerSubsystem vision = null;
@@ -20,20 +20,20 @@ public class GoldenPP7Command extends CommandBase {
     private final double d1 = 66;
     private final double d2 = 88;
     
-    private double velocity = 800;
+    private double velocity = 750;
 
-    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick rightJoystick, XboxController controller2, MoonRakerSubsystem vision){
+    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick leftJoystick, XboxController controller2, MoonRakerSubsystem vision){
         this.shooter = shooter;
-        this.rightJoystick = rightJoystick;
+        this.leftJoystick = leftJoystick;
         this.controller2 = controller2;
         this.vision = vision;
         addRequirements(shooter);
         addRequirements(vision);
     }
 
-    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick rightJoystick, XboxController controller2){
+    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick leftJoystick, XboxController controller2){
         this.shooter = shooter;
-        this.rightJoystick = rightJoystick;
+        this.leftJoystick = leftJoystick;
         this.controller2 = controller2;
         addRequirements(shooter);
     }
@@ -68,7 +68,7 @@ public class GoldenPP7Command extends CommandBase {
             shooter.conveyor1Off();
         }
 
-        if (rightJoystick.getTrigger()){
+        if (leftJoystick.getTrigger()){
             shooter.conveyor2On();
 
         }
