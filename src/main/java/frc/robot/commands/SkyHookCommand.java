@@ -5,14 +5,12 @@ import frc.robot.subsystems.SkyHookSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class SkyHookCommand extends CommandBase {
-    private final Joystick leftJoystick;
     private final Joystick rightJoystick;
     private final SkyHookSubsystem climber;
 
-    public SkyHookCommand(SkyHookSubsystem climber, Joystick leftJoystick, Joystick rightJoystick) {
+    public SkyHookCommand(SkyHookSubsystem climber, Joystick rightJoystick) {
         this.climber = climber;
         this.rightJoystick = rightJoystick;
-        this.leftJoystick = leftJoystick;
         addRequirements(climber);
     }
 
@@ -22,11 +20,11 @@ public class SkyHookCommand extends CommandBase {
     }
 
     private double getSpeed() {
-        if (rightJoystick.getRawButton(2)) {
+        if (rightJoystick.getRawButton(4)) {
             return 1.0d;
         }
 
-        if (rightJoystick.getRawButton(3)) {
+        if (rightJoystick.getRawButton(5)) {
             return -1.0d;
         }
 

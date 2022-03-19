@@ -20,7 +20,7 @@ public class GoldenPP7Command extends CommandBase {
     private final double d1 = 66;
     private final double d2 = 88;
     
-    private double velocity = 750;
+    private double velocity = 800;
 
     public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick leftJoystick, XboxController controller2, MoonRakerSubsystem vision){
         this.shooter = shooter;
