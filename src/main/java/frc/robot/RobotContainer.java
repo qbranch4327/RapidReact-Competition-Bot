@@ -14,7 +14,6 @@ import frc.robot.QAIModes.QAIRegular;
 import frc.robot.commands.AMDB5Command;
 import frc.robot.commands.ShakenNotStirredCommand;
 import frc.robot.commands.GoldenPP7Command;
-import frc.robot.commands.QSpikeFanOnCommand;
 import frc.robot.subsystems.SkyHookSubsystem;
 import frc.robot.subsystems.AMDB5Subsystem;
 import frc.robot.subsystems.ShakenNotStirredSubsystem;
@@ -60,7 +59,7 @@ public class RobotContainer {
     Command shortauton = new QAIShort(driveTrain, intake, vision, shooter);
     
     driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,leftJoystick,rightJoystick));
-    climb.setDefaultCommand(new SkyHookCommand(climb, leftJoystick, rightJoystick));
+    climb.setDefaultCommand(new SkyHookCommand(climb, rightJoystick, controller2));
     intake.setDefaultCommand(new ShakenNotStirredCommand(intake, controller2));
     shooter.setDefaultCommand(new GoldenPP7Command(shooter, leftJoystick, controller2, vision));
 

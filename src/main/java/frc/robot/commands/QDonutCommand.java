@@ -9,8 +9,8 @@ public class QDonutCommand extends CommandBase{
     private final double spin = 82.6 / 360;
     private double distance;
 
-    public QDonutCommand(AMDB5Subsystem drivetrain, boolean direction, double degrees){
-        this.drivetrain = drivetrain;
+    public QDonutCommand(AMDB5Subsystem drive, boolean direction, double degrees){
+        this.drivetrain = drive;
         this.direction = direction;
         distance = spin * degrees;
     }

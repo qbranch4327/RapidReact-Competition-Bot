@@ -3,7 +3,7 @@ package frc.robot.QAIModes;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.QAMDB5Command;
 import frc.robot.commands.QShakenNotStirredCommand;
-import frc.robot.commands.QYoyoSawCommand;
+import frc.robot.commands.QGoldenPP7Command;
 import frc.robot.subsystems.AMDB5Subsystem;
 import frc.robot.subsystems.GoldenPP7Subsystem;
 import frc.robot.subsystems.MoonRakerSubsystem;
@@ -22,11 +22,11 @@ public class QAIRegular extends SequentialCommandGroup {
    */
   public QAIRegular(AMDB5Subsystem drive, ShakenNotStirredSubsystem intake, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter) {
     addCommands(
-      new QYoyoSawCommand(shooter, 4, 2),
-      new QAMDB5Command(drive, 20, .3),
+      new QGoldenPP7Command(shooter, 4, 2),
+      new QAMDB5Command(drive, 20, .3, shooter, vision),
       new QShakenNotStirredCommand(intake, 2.5),
-      new QAMDB5Command(drive, -40.75, .2),
-      new QYoyoSawCommand(shooter, 4, 2)
+      new QAMDB5Command(drive, -40.75, .2, shooter, vision),
+      new QGoldenPP7Command(shooter, 4, 2)
     );
   }
 }

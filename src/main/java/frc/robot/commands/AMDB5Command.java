@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick; 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.AMDB5Subsystem;
@@ -36,21 +35,21 @@ public class AMDB5Command extends CommandBase {
         this.drivetrain.publishToDashboard();
         this.drivetrain.setSpeed(percentRight,percentLeft);
         
-        // if (controller.getBButton()){
+        // if (leftJoystick.getRawButton(4)){
         //     if (player.isPlaying()){
         //         player.stop();
         //     }
         //     else{
-        //         player.loadMusic("src/main/deploy/song1.chrp");
+        //         player.loadMusic("song1.chrp");
         //         player.play();
         //     }
         // }
-        // if (controller.getYButton()){
+        // if (leftJoystick.getRawButton(3)){
         //     if (player.isPlaying()){
         //         player.stop();
         //     }
         //     else{
-        //         player.loadMusic("src/main/deploy/songwii.chrp");
+        //         player.loadMusic("songwii.chrp");
         //         player.play();
         //     }
         // }

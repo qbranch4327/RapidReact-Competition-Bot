@@ -19,11 +19,11 @@ public class QAIShort extends SequentialCommandGroup {
      */
     public QAIShort(AMDB5Subsystem drive, ShakenNotStirredSubsystem intake, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter) {
         addCommands(
-            new QYoyoSawCommand(shooter, 4, 2),
-            new QAMDB5Command(drive, 20, .3),
+            new QGoldenPP7Command(shooter, 4, 2),
+            new QAMDB5Command(drive, 20, .3, shooter, vision),
             new QShakenNotStirredCommand(intake, 2.5),
-            new QAMDB5Command(drive, -25.75, .2),
-            new QYoyoSawCommand(shooter, 4, 2)
+            new QAMDB5Command(drive, -25.75, .2, shooter, vision),
+            new QGoldenPP7Command(shooter, 4, 2)
         );
     }
 }

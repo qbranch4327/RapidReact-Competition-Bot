@@ -2,6 +2,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.AMDB5Subsystem;
+import frc.robot.subsystems.GoldenPP7Subsystem;
+import frc.robot.subsystems.MoonRakerSubsystem;
 
 public class QAMDB5Command extends CommandBase {
     private final AMDB5Subsystem drive;
@@ -10,14 +12,20 @@ public class QAMDB5Command extends CommandBase {
     private boolean backward = false;
     private double leftDistance;
     private double rightDistance;
+    private final GoldenPP7Subsystem shooter;
+    private final MoonRakerSubsystem vision;
 
-    public QAMDB5Command(AMDB5Subsystem drive, double distance, double speed) {
+    public QAMDB5Command(AMDB5Subsystem drive, double distance, double speed, GoldenPP7Subsystem shooter, MoonRakerSubsystem vision) {
         this.drive = drive;
         this.distance = -distance;
         this.speed = speed;
         if (this.distance < 0){
             this.backward = true;
         }
+        this.shooter = shooter;
+        this.vision = vision;
+        addRequirements(shooter);
+        addRequirements(vision);
         addRequirements(drive);
     }
 
@@ -26,10 +34,24 @@ public class QAMDB5Command extends CommandBase {
         drive.resetEncoders();
         drive.publishToDashboard();
         drive.switchToBrakeMode();
+
     }
 
     @Override
     public void execute() {
+        if (vision.getX() < -5){
+            while (vision.getX() < -5){
+                shooter.turretCCW();
+            }
+        }
+        else if (vision.getX() > 5){
+            while (vision.getX() > 5){
+                 shooter.turretCW();
+            }
+        }
+        else {
+            shooter.turretOff();;
+        }
         drive.publishToDashboard();
         if (!backward){
             drive.setSpeed(speed, speed+.0075);
