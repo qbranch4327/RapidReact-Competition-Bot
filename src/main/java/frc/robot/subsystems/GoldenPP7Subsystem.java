@@ -68,11 +68,11 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     }
 
     public void turretCW(){
-        turret.set(ControlMode.PercentOutput, .5);
+        turret.set(ControlMode.PercentOutput, .8);
 }
 
     public void turretCCW(){
-        turret.set(ControlMode.PercentOutput, -.5);
+        turret.set(ControlMode.PercentOutput, -.8);
     }
 
     public void turretOff(){

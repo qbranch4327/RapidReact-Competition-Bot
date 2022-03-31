@@ -21,22 +21,25 @@ public class SkyHookCommand extends CommandBase {
     public void execute() {
         if (rightJoystick.getRawButton(4)) {
             climber.setRspeed(1);
+            climber.setLspeed(1);
         }
         else if (rightJoystick.getRawButton(5)) {
             climber.setRspeed(-1);
-        }
-        else {
-            climber.setRspeed(0);
-        }
-
-        if (controller.getYButton()) {
-            climber.setLspeed(1);
-        }
-        else if (controller.getBButton()) {
             climber.setLspeed(-1);
         }
         else {
+            climber.setRspeed(0);
             climber.setLspeed(0);
         }
+
+       if (controller.getYButton()) {
+           climber.setLspeed(1);
+       }
+       else if (controller.getBButton()) {
+           climber.setLspeed(-1);
+       }
+       else {
+           climber.setLspeed(0);
+       }
     }
 }

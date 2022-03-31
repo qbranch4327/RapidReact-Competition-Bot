@@ -20,7 +20,7 @@ public class GoldenPP7Command extends CommandBase {
     private final double d1 = 66;
     private final double d2 = 88;
     
-    private double velocity = 800;
+    private double velocity = 850;
 
     public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick leftJoystick, XboxController controller2, MoonRakerSubsystem vision){
         this.shooter = shooter;
@@ -88,7 +88,7 @@ public class GoldenPP7Command extends CommandBase {
             shooter.turretOff();
         }
 
-        if (controller2.getYButton()){
+        if (controller2.getXButton()){
             if (vision.getX() < -5){
                 shooter.turretCCW();
             }

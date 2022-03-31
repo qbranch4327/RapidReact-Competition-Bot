@@ -29,8 +29,8 @@ public class AMDB5Command extends CommandBase {
     public void execute(){
         double percentLeft = leftJoystick.getY();
         double percentRight = rightJoystick.getY();
-        percentLeft *= .6;
-        percentRight *= .6;
+        percentLeft *= .55;
+        percentRight *= .55;
 
         this.drivetrain.publishToDashboard();
         this.drivetrain.setSpeed(percentRight,percentLeft);

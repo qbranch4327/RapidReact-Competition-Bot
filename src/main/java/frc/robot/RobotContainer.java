@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.SkyHookCommand;
 import frc.robot.QAIModes.QAIShort;
 import frc.robot.QAIModes.QAIRegular;
+import frc.robot.QAIModes.QAI3Ball;
 import frc.robot.commands.AMDB5Command;
 import frc.robot.commands.ShakenNotStirredCommand;
 import frc.robot.commands.GoldenPP7Command;
@@ -57,6 +58,7 @@ public class RobotContainer {
     
     Command regular = new QAIRegular(driveTrain, intake, vision, shooter);
     Command shortauton = new QAIShort(driveTrain, intake, vision, shooter);
+    Command threeball = new QAI3Ball(driveTrain, shooter, vision, intake);
     
     driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,leftJoystick,rightJoystick));
     climb.setDefaultCommand(new SkyHookCommand(climb, rightJoystick, controller2));
@@ -68,6 +70,7 @@ public class RobotContainer {
 
     qChooser.setDefaultOption("Regular Auton", regular);
     qChooser.addOption("Short Auton (for the wall)", shortauton);
+    qChooser.addOption("3 Balls Auton", threeball);
 
   // Put the chooser on the dashboard
     SmartDashboard.putData(qChooser);
