@@ -37,17 +37,9 @@ public class ShakenNotStirredSubsystem extends SubsystemBase{
         }
     }
 
-    public void intakeUp(){
-        timer.start();
-        wheelMotor.set(wheelSpeed);
-        armMotor.set(armSpeed*-1.5);
-        if (timer.get() > 3){
-            armMotor.stopMotor();
-        }
-    }
-
     public void intakeOff(){
+        timer.reset();
         wheelMotor.stopMotor();
-        armMotor.stopMotor();
+        armMotor.set(armSpeed*-1.5);
     }
 }

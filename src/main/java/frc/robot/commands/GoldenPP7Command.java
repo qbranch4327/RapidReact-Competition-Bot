@@ -13,6 +13,7 @@ import frc.robot.subsystems.MoonRakerSubsystem;
 
 public class GoldenPP7Command extends CommandBase {
     private final Joystick leftJoystick;
+    private final Joystick rightJoystick;
     private final XboxController controller2;
     private final GoldenPP7Subsystem shooter;
     private MoonRakerSubsystem vision = null;
@@ -22,18 +23,20 @@ public class GoldenPP7Command extends CommandBase {
     
     private double velocity = 850;
 
-    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick leftJoystick, XboxController controller2, MoonRakerSubsystem vision){
+    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick leftJoystick, Joystick rightJoystick, XboxController controller2, MoonRakerSubsystem vision){
         this.shooter = shooter;
         this.leftJoystick = leftJoystick;
+        this.rightJoystick = rightJoystick;
         this.controller2 = controller2;
         this.vision = vision;
         addRequirements(shooter);
         addRequirements(vision);
     }
 
-    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick leftJoystick, XboxController controller2){
+    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick leftJoystick, Joystick rightJoystick, XboxController controller2){
         this.shooter = shooter;
         this.leftJoystick = leftJoystick;
+        this.rightJoystick = rightJoystick;
         this.controller2 = controller2;
         addRequirements(shooter);
     }
@@ -68,7 +71,7 @@ public class GoldenPP7Command extends CommandBase {
             shooter.conveyor1Off();
         }
 
-        if (leftJoystick.getTrigger()){
+        if (controller2.getRightTriggerAxis() > 0.5){
             shooter.conveyor2On();
 
         }
@@ -84,20 +87,21 @@ public class GoldenPP7Command extends CommandBase {
         else if (controller2.getLeftBumper()){
             shooter.turretCCW();
         }
-        else {
-            shooter.turretOff();
-        }
-
-        if (controller2.getXButton()){
-            if (vision.getX() < -5){
+        else if (controller2.getXButton()){
+            if (vision.getX() < -3){
                 shooter.turretCCW();
             }
-            else if (vision.getX() > 5){
+            else if (vision.getX() > 3){
                 shooter.turretCW();
             }
             else {
                 shooter.turretOff();;
             }
+        } 
+        else {
+            shooter.turretOff();
         }
+
+        
     }
 }

@@ -54,10 +54,10 @@ public class QAMDB5Command extends CommandBase {
         }
         drive.publishToDashboard();
         if (!backward){
-            drive.setSpeed(speed, speed+.0075);
+            drive.setSpeed(speed, speed+.03);
         }
         else if (backward){
-            drive.setSpeed(-speed, -speed-.0075);
+            drive.setSpeed(-speed, -speed-.03);
         }
         leftDistance = drive.getLeftEncoderDistanceInches();
         rightDistance = drive.getRightEncoderDistanceInches();

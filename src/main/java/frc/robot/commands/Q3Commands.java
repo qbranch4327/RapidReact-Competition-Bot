@@ -1,5 +1,4 @@
 package frc.robot.commands;
-import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
@@ -15,13 +14,10 @@ public class Q3Commands extends CommandBase{
     private final double distance3;
     private final double distance4;
 
-    private final double speed = .5;
+    private final double speed = .35;
     
     private double leftDistance;
     private double rightDistance;
-
-    private SlewRateLimiter limiter = new SlewRateLimiter(.4, .2);
-    private SlewRateLimiter limiterback = new SlewRateLimiter(-.4, -.2);
     
     private Timer timer;
 
@@ -37,11 +33,14 @@ public class Q3Commands extends CommandBase{
     private final double shooter2endTime;
     private final double drive3startTime;
     private final double drive4startTime;
+    private final double drive4endTime;
 
 
-    public Q3Commands(AMDB5Subsystem drive, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter, ShakenNotStirredSubsystem intake, double distance1, double distance2, double distance3, double distance4, 
-    double intialstart, double intakedurationTime, double intake1startTime, double conveyor1startTime, double shooter1endTime, double drive2startTime,
-    double intake2startTime, double shooter2startTime, double conveyor2startTime, double shooter2endTime, double drive3startTime, double drive4startTime){
+    public Q3Commands(AMDB5Subsystem drive, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter, ShakenNotStirredSubsystem intake, 
+    double distance1, double distance2, double distance3, double distance4, double intialstart, double intakedurationTime, 
+    double intake1startTime, double conveyor1startTime, double shooter1endTime, double drive2startTime, double intake2startTime, 
+    double shooter2startTime, double conveyor2startTime, double shooter2endTime, double drive3startTime, double drive4startTime, 
+    double drive4endTime){
         this.drive = drive;
         this.intake = intake;
         this.vision = vision;
@@ -62,6 +61,7 @@ public class Q3Commands extends CommandBase{
         this.shooter2endTime = shooter2endTime;
         this.drive3startTime = drive3startTime;
         this.drive4startTime = drive4startTime;
+        this.drive4endTime = drive4endTime;
         timer = new Timer();
         addRequirements(shooter);
         addRequirements(intake);
@@ -96,24 +96,24 @@ public class Q3Commands extends CommandBase{
         drive.publishToDashboard();
 
         if (timer.get() > intialstart){
-            drive.setSpeed(limiter.calculate(speed), limiter.calculate(speed+.0075));
+            drive.setSpeed(-speed-.02, -speed+.04);
             leftDistance = drive.getLeftEncoderDistanceInches();
             rightDistance = drive.getRightEncoderDistanceInches();
         }
-        if (leftDistance >= this.distance1 || rightDistance >= this.distance1){
+        if (leftDistance <= this.distance1 || rightDistance <= this.distance1 && timer.get() < drive2startTime){
             drive.setSpeed(0, 0);
         }
 
-        if (timer.get() == drive2startTime){
+        if ((int) (timer.get()) == drive2startTime){
             drive.resetEncoders();
         }
 
         if (timer.get() > drive2startTime){
-            drive.setSpeed(limiterback.calculate(-speed), limiterback.calculate(-speed-.0075));
+            drive.setSpeed((speed+.02), (speed-.04));
             leftDistance = drive.getLeftEncoderDistanceInches();
             rightDistance = drive.getRightEncoderDistanceInches();
         }
-        if (leftDistance <= this.distance2 || rightDistance <= this.distance2){
+        if (leftDistance >= this.distance2 || rightDistance >= this.distance2 && timer.get() < drive3startTime){
             drive.setSpeed(0, 0);
         }
 
@@ -122,11 +122,11 @@ public class Q3Commands extends CommandBase{
         }
 
         if (timer.get() > drive3startTime){
-            drive.setSpeed(limiterback.calculate(speed), limiterback.calculate(speed+.0075));
+            drive.setSpeed(-speed, -speed+.01);
             leftDistance = drive.getLeftEncoderDistanceInches();
             rightDistance = drive.getRightEncoderDistanceInches();
         }
-        if (leftDistance >= this.distance3 || rightDistance >= this.distance3){
+        if ((leftDistance <= this.distance3 || rightDistance <= this.distance3) && timer.get() > drive3startTime + 2.5 && timer.get() < drive4startTime){
             drive.setSpeed(0, 0);
         }
 
@@ -135,18 +135,18 @@ public class Q3Commands extends CommandBase{
         }
 
         if (timer.get() > drive4startTime){
-            drive.setSpeed(limiterback.calculate(-speed), limiterback.calculate(-speed-.0075));
+            drive.setSpeed(speed, speed-.01);
             leftDistance = drive.getLeftEncoderDistanceInches();
             rightDistance = drive.getRightEncoderDistanceInches();
         }
-        if (leftDistance <= this.distance4 || rightDistance <= this.distance4){
+        if ((leftDistance >= this.distance4 || rightDistance >= this.distance4)  || timer.get() > drive4endTime){
             drive.setSpeed(0, 0);
         }
 
         if (timer.get() > intialstart){
-            shooter.conveyor1On();
             shooter.shooterOn(800);
             if (timer.get() > conveyor1startTime){
+                shooter.conveyor1On();
                 shooter.conveyor2On();
             }
         }
@@ -178,7 +178,7 @@ public class Q3Commands extends CommandBase{
         if (timer.get() > intake2startTime){
             intake.intakeOn();
         }
-        if (timer.get() >= intake2startTime + intakedurationTime){
+        if (timer.get() >= intake2startTime + 8){
             intake.intakeOff();
         }
             
@@ -187,12 +187,10 @@ public class Q3Commands extends CommandBase{
 
     @Override
     public boolean isFinished(){
-        
-            if (leftDistance <= this.distance4 || rightDistance <= this.distance4){
-                drive.setSpeed(0, 0);
-                drive.switchToCoastMode();
-                return true;
-            }
+        if (timer.get() > 14.9){
+            drive.switchToCoastMode();
+            return true;
+        }
         return false;
     }
 }

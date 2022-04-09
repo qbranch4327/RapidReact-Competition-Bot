@@ -35,23 +35,23 @@ public class AMDB5Command extends CommandBase {
         this.drivetrain.publishToDashboard();
         this.drivetrain.setSpeed(percentRight,percentLeft);
         
-        // if (leftJoystick.getRawButton(4)){
-        //     if (player.isPlaying()){
-        //         player.stop();
-        //     }
-        //     else{
-        //         player.loadMusic("song1.chrp");
-        //         player.play();
-        //     }
-        // }
-        // if (leftJoystick.getRawButton(3)){
-        //     if (player.isPlaying()){
-        //         player.stop();
-        //     }
-        //     else{
-        //         player.loadMusic("songwii.chrp");
-        //         player.play();
-        //     }
-        // }
+        if (leftJoystick.getRawButton(4)){
+            if (player.isPlaying()){
+                player.stop();
+            }
+            else{
+                player.loadMusic("song1.chrp");
+                player.play();
+            }
+        }
+        if (leftJoystick.getRawButton(3)){
+            if (player.isPlaying()){
+                player.stop();
+            }
+            else{
+                player.loadMusic("songwii.chrp");
+                player.play();
+            }
+        }
     }
 }

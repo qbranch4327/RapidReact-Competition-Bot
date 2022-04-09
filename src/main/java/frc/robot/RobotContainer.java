@@ -62,8 +62,8 @@ public class RobotContainer {
     
     driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,leftJoystick,rightJoystick));
     climb.setDefaultCommand(new SkyHookCommand(climb, rightJoystick, controller2));
-    intake.setDefaultCommand(new ShakenNotStirredCommand(intake, controller2));
-    shooter.setDefaultCommand(new GoldenPP7Command(shooter, leftJoystick, controller2, vision));
+    intake.setDefaultCommand(new ShakenNotStirredCommand(intake, leftJoystick, rightJoystick, controller2));
+    shooter.setDefaultCommand(new GoldenPP7Command(shooter, leftJoystick, rightJoystick, controller2, vision));
 
 
     configureButtonBindings();
