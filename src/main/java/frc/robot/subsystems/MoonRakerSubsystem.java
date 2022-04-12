@@ -17,7 +17,6 @@ public class MoonRakerSubsystem extends SubsystemBase {
     private NetworkTableEntry ty;
 
     public MoonRakerSubsystem() {
-
     }
 
     public void publishToDashboard() {

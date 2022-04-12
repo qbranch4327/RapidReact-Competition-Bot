@@ -5,21 +5,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick; 
-// import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.Command;
-// import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.SkyHookCommand;
-import frc.robot.QAIModes.QAIShort;
-import frc.robot.QAIModes.QAIRegular;
-import frc.robot.QAIModes.QAI3Ball;
-import frc.robot.commands.AMDB5Command;
-import frc.robot.commands.ShakenNotStirredCommand;
-import frc.robot.commands.GoldenPP7Command;
-import frc.robot.subsystems.SkyHookSubsystem;
-import frc.robot.subsystems.AMDB5Subsystem;
-import frc.robot.subsystems.ShakenNotStirredSubsystem;
-import frc.robot.subsystems.GoldenPP7Subsystem;
-import frc.robot.subsystems.MoonRakerSubsystem;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
+import frc.robot.QAIModes.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -40,9 +29,6 @@ public class RobotContainer {
   //private final Command m_autoCommand;
   SendableChooser<Command> qChooser = new SendableChooser<>();
   // Add commands to the autonomous command chooser
-  
-  
-
 
   // The robot's subsystems and commands are defined here...
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -64,7 +50,6 @@ public class RobotContainer {
     climb.setDefaultCommand(new SkyHookCommand(climb, rightJoystick, controller2));
     intake.setDefaultCommand(new ShakenNotStirredCommand(intake, leftJoystick, rightJoystick, controller2));
     shooter.setDefaultCommand(new GoldenPP7Command(shooter, leftJoystick, rightJoystick, controller2, vision));
-
 
     configureButtonBindings();
 

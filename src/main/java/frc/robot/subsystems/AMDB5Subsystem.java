@@ -42,7 +42,6 @@ public class AMDB5Subsystem extends SubsystemBase {
         this.rightEncoder.setSamplesToAverage(5);
         this.leftEncoder.setSamplesToAverage(5);
 
-    //    driveMotorLeftA.setInverted(TalonFXInvertType.Clockwise);
         driveMotorRightA.setInverted(TalonFXInvertType.Clockwise);
         driveMotorRightB.follow(driveMotorRightA);
         driveMotorLeftB.follow(driveMotorLeftA);

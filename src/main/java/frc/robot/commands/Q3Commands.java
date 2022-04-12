@@ -1,4 +1,5 @@
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
@@ -34,7 +35,6 @@ public class Q3Commands extends CommandBase{
     private final double drive3startTime;
     private final double drive4startTime;
     private final double drive4endTime;
-
 
     public Q3Commands(AMDB5Subsystem drive, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter, ShakenNotStirredSubsystem intake, 
     double distance1, double distance2, double distance3, double distance4, double intialstart, double intakedurationTime, 
@@ -93,6 +93,7 @@ public class Q3Commands extends CommandBase{
         else {
             shooter.turretOff();;
         }
+        
         drive.publishToDashboard();
 
         if (timer.get() > intialstart){

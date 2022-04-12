@@ -34,7 +34,6 @@ public class QAMDB5Command extends CommandBase {
         drive.resetEncoders();
         drive.publishToDashboard();
         drive.switchToBrakeMode();
-
     }
 
     @Override
@@ -64,7 +63,6 @@ public class QAMDB5Command extends CommandBase {
 
         System.out.println("left: " + leftDistance);
         System.out.println("right: " + rightDistance);
-
     }
 
     @Override

@@ -1,9 +1,7 @@
 package frc.robot.commands;
 
 import java.awt.Font;
-
 import javax.swing.JLabel;
-
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick; 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -83,7 +81,6 @@ public class GoldenPP7Command extends CommandBase {
         if (controller2.getRightBumper()){
             shooter.turretCW();
         }
-        
         else if (controller2.getLeftBumper()){
             shooter.turretCCW();
         }
@@ -102,6 +99,5 @@ public class GoldenPP7Command extends CommandBase {
             shooter.turretOff();
         }
 
-        
     }
 }

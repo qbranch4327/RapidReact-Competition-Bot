@@ -30,14 +30,14 @@ public class SkyHookCommand extends CommandBase {
             climber.setRspeed(0);
         }
 
-       if (rightJoystick.getRawButton(4)) {
-           climber.setLspeed(-1);
-       }
-       else if (rightJoystick.getRawButton(5)) {
-           climber.setLspeed(1);
-       }
-       else {
-           climber.setLspeed(0);
-       }
+        if (rightJoystick.getRawButton(4)) {
+            climber.setLspeed(-1);
+        }
+        else if (rightJoystick.getRawButton(5)) {
+            climber.setLspeed(1);
+        }
+        else {
+            climber.setLspeed(0);
+        }
     }
 }

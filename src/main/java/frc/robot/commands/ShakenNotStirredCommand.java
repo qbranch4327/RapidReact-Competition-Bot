@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import javax.lang.model.util.ElementScanner6;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -21,13 +23,16 @@ public class ShakenNotStirredCommand extends CommandBase {
 
     @Override
     public void execute(){
-        if (leftJoystick.getRawButton(0)){
+        if (leftJoystick.getRawButton(1)){
             intake.intakeOn(false);
         }
-        else if (rightJoystick.getRawButton(0)){
+        else if (rightJoystick.getRawButton(1)){
             intake.intakeOn(true);
         }
-        else{
+        else if (rightJoystick.getRawButton(2)){
+            intake.intakeUp();
+        }
+        else {
             intake.intakeOff();
         }
     }
