@@ -38,13 +38,13 @@ public class QAMDB5Command extends CommandBase {
 
     @Override
     public void execute() {
-        if (vision.getX() < -5){
-            while (vision.getX() < -5){
+        if (vision.getX() < -2){
+            while (vision.getX() < -2){
                 shooter.turretCCW();
             }
         }
-        else if (vision.getX() > 5){
-            while (vision.getX() > 5){
+        else if (vision.getX() > 2){
+            while (vision.getX() > 2){
                  shooter.turretCW();
             }
         }
@@ -53,10 +53,10 @@ public class QAMDB5Command extends CommandBase {
         }
         drive.publishToDashboard();
         if (!backward){
-            drive.setSpeed(speed, speed+.03);
+            drive.setSpeed(speed, speed);
         }
         else if (backward){
-            drive.setSpeed(-speed, -speed-.03);
+            drive.setSpeed(-speed, -speed);
         }
         leftDistance = drive.getLeftEncoderDistanceInches();
         rightDistance = drive.getRightEncoderDistanceInches();

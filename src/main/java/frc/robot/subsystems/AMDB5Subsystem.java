@@ -7,8 +7,10 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -118,6 +120,14 @@ public class AMDB5Subsystem extends SubsystemBase {
     }
 
     public TalonFX speaker2(){
-        return driveMotorLeftA;
+        return driveMotorLeftB;
+    }
+
+    public TalonFX speaker3(){
+        return driveMotorRightA;
+    }
+
+    public TalonFX speaker4(){
+        return driveMotorRightB;
     }
 }

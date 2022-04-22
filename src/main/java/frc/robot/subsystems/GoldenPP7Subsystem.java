@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Servo;
@@ -93,5 +94,22 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     public void shooterOff(){
         shooter1.set(ControlMode.PercentOutput, 0);
         shooter2.set(ControlMode.PercentOutput, 0);
+    }
+
+    public TalonFX speaker1(){
+        return turret;
+    }
+
+    public void musicMode(boolean music){
+        if (music){
+            turret.set(ControlMode.MusicTone, 20);
+        }
+        else{
+            turret.set(ControlMode.PercentOutput, 0);
+        }
+    }
+
+    public void tone(){
+        turret.set(ControlMode.MusicTone, 440);
     }
 }

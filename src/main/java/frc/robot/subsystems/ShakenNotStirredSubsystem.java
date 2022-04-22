@@ -16,11 +16,11 @@ public class ShakenNotStirredSubsystem extends SubsystemBase{
         timer.start();
         if (direction){
             wheelMotor.set(wheelSpeed);
-            armMotor.set(.1);
+            armMotor.set(.01);
         }
         else{
             wheelMotor.set(-wheelSpeed);
-            armMotor.set(.1);
+            armMotor.set(.01);
         }
     }
 

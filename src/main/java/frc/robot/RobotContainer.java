@@ -1,11 +1,17 @@
 package frc.robot;
 
+import java.util.ArrayList;
+
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick; 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.QAIModes.*;
@@ -20,6 +26,13 @@ public class RobotContainer {
   private final XboxController controller2;
   private final Joystick leftJoystick;
   private final Joystick rightJoystick;
+  // private final MusicSubsystem musicSubsystem1;
+  // private final MusicSubsystem musicSubsystem2;
+  // private final MusicSubsystem musicSubsystem3;
+  // private final MusicSubsystem musicSubsystem4;
+  // private final MusicSubsystem musicSubsystem5;
+  // private final MusicSubsystem musicSubsystem6;
+
   private final AMDB5Subsystem driveTrain;
   private final SkyHookSubsystem climb;
   private final ShakenNotStirredSubsystem intake;
@@ -36,6 +49,53 @@ public class RobotContainer {
     this.leftJoystick = new Joystick(0);
     this.rightJoystick = new Joystick(1);
     this.controller2 = new XboxController(2);
+
+    // var instruments1 = new ArrayList<TalonFX>();
+    // instruments1.add(new TalonFX(5));
+    // var instruments2 = new ArrayList<TalonFX>();
+    // instruments2.add(new TalonFX(4));
+    // var instruments3 = new ArrayList<TalonFX>();
+    // instruments3.add(new TalonFX(3));
+    // var instruments4 = new ArrayList<TalonFX>();
+    // instruments4.add(new TalonFX(2));
+    // var instruments5 = new ArrayList<TalonFX>();
+    // instruments5.add(new TalonFX(30));
+    // var instruments6 = new ArrayList<TalonFX>();
+    // instruments6.add(new TalonFX(40));
+
+    // this.musicSubsystem1 = new MusicSubsystem(instruments1);
+    // this.musicSubsystem1.load("songwii.chrp");
+    // this.musicSubsystem2 = new MusicSubsystem(instruments2);
+    // this.musicSubsystem2.load("songwii.chrp");
+    // this.musicSubsystem3 = new MusicSubsystem(instruments3);
+    // this.musicSubsystem3.load("songwii.chrp");
+    // this.musicSubsystem4 = new MusicSubsystem(instruments4);
+    // this.musicSubsystem4.load("songwii.chrp");
+    // this.musicSubsystem5 = new MusicSubsystem(instruments5);
+    // this.musicSubsystem5.load("songwii.chrp");
+    // this.musicSubsystem6 = new MusicSubsystem(instruments5);
+    // this.musicSubsystem6.load("songwii.chrp");
+
+    // Button musicButton1 = new JoystickButton(controller2, XboxController.Button.kA.value);
+    // musicButton1
+    //     .whenPressed(() -> this.musicSubsystem1.play());
+    // Button musicButton2 = new JoystickButton(controller2, XboxController.Button.kA.value);
+    // musicButton2    
+    //     .whenPressed(() -> this.musicSubsystem2.play());
+    // Button musicButton3 = new JoystickButton(controller2, XboxController.Button.kA.value);
+    // musicButton3  
+    //     .whenPressed(() -> this.musicSubsystem3.play());
+    // Button musicButton4 = new JoystickButton(controller2, XboxController.Button.kA.value);
+    // musicButton4
+    //     .whenPressed(() -> this.musicSubsystem4.play());
+    // Button musicButton5 = new JoystickButton(controller2, XboxController.Button.kA.value);
+    // musicButton5  
+    //     .whenPressed(() -> this.musicSubsystem5.play());
+    // Button musicButton6 = new JoystickButton(controller2, XboxController.Button.kA.value);
+    // musicButton6  
+    //     .whenPressed(() -> this.musicSubsystem6.play());
+
+
     this.driveTrain = new AMDB5Subsystem();
     this.climb = new SkyHookSubsystem();
     this.intake = new ShakenNotStirredSubsystem();
@@ -46,7 +106,7 @@ public class RobotContainer {
     Command shortauton = new QAIShort(driveTrain, intake, vision, shooter);
     Command threeball = new QAI3Ball(driveTrain, shooter, vision, intake);
     
-    driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,leftJoystick,rightJoystick));
+    driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,leftJoystick,rightJoystick, controller2));
     climb.setDefaultCommand(new SkyHookCommand(climb, rightJoystick, controller2));
     intake.setDefaultCommand(new ShakenNotStirredCommand(intake, leftJoystick, rightJoystick, controller2));
     shooter.setDefaultCommand(new GoldenPP7Command(shooter, leftJoystick, rightJoystick, controller2, vision));

@@ -2,6 +2,9 @@ package frc.robot.commands;
 
 import java.awt.Font;
 import javax.swing.JLabel;
+
+import com.ctre.phoenix.music.Orchestra;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick; 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,8 +21,8 @@ public class GoldenPP7Command extends CommandBase {
 
     private final double d1 = 66;
     private final double d2 = 88;
-    
-    private double velocity = 850;
+    private Orchestra player;
+    private double velocity = 1100;
 
     public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick leftJoystick, Joystick rightJoystick, XboxController controller2, MoonRakerSubsystem vision){
         this.shooter = shooter;
@@ -27,6 +30,10 @@ public class GoldenPP7Command extends CommandBase {
         this.rightJoystick = rightJoystick;
         this.controller2 = controller2;
         this.vision = vision;
+
+        var speaker = shooter.speaker1();
+        player = new Orchestra();
+        player.addInstrument(shooter.speaker1());
         addRequirements(shooter);
         addRequirements(vision);
     }
@@ -41,6 +48,20 @@ public class GoldenPP7Command extends CommandBase {
 
     @Override
     public void execute(){
+        // var errorCode = player.loadMusic("songwii.chrp");
+        // System.out.println(errorCode);
+        //     // shooter.musicMode(true);
+        //     var errorCode2 = player.play();
+        //     System.out.println(errorCode2);
+        shooter.tone();
+
+        if (controller2.getRightStickButton()){
+            if (player.isPlaying()){
+                player.stop();
+                // shooter.musicMode(false);
+            }
+        }
+
         vision.update();
 
         if (vision.getDistance() >= d1 && vision.getDistance() <= d2){
@@ -62,16 +83,12 @@ public class GoldenPP7Command extends CommandBase {
         if (controller2.getLeftY() > 0.09){
             shooter.conveyor1On(false);
         }
-        else if (controller2.getLeftY() < -0.09){
-            shooter.conveyor1On(true);
-        }
         else{
             shooter.conveyor1Off();
         }
 
         if (controller2.getRightTriggerAxis() > 0.5){
             shooter.conveyor2On();
-
         }
         else {
             shooter.conveyor2Off();

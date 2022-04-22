@@ -32,8 +32,15 @@ public class ShakenNotStirredCommand extends CommandBase {
         else if (rightJoystick.getRawButton(2)){
             intake.intakeUp();
         }
+        else if (controller.getRightY()>.1){
+            intake.intakeOn(false);
+        }
+        else if (controller.getRightY()< -.1){
+            intake.intakeOn(true);
+        }
         else {
             intake.intakeOff();
         }
+        
     }
 }
