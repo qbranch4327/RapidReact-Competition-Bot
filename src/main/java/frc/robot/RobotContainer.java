@@ -33,7 +33,7 @@ public class RobotContainer {
   // private final MusicSubsystem musicSubsystem5;
   // private final MusicSubsystem musicSubsystem6;
 
-  private final AMDB5Subsystem driveTrain;
+  private final DriveSubsystem driveTrain;
   private final SkyHookSubsystem climb;
   private final ShakenNotStirredSubsystem intake;
   private final GoldenPP7Subsystem shooter;
@@ -96,7 +96,7 @@ public class RobotContainer {
     //     .whenPressed(() -> this.musicSubsystem6.play());
 
 
-    this.driveTrain = new AMDB5Subsystem();
+    this.driveTrain = new DriveSubsystem();
     this.climb = new SkyHookSubsystem();
     this.intake = new ShakenNotStirredSubsystem();
     this.vision = new MoonRakerSubsystem();
@@ -105,6 +105,7 @@ public class RobotContainer {
     Command regular = new QAIRegular(driveTrain, intake, vision, shooter);
     Command shortauton = new QAIShort(driveTrain, intake, vision, shooter);
     Command threeball = new QAI3Ball(driveTrain, shooter, vision, intake);
+    Command tv = new Tv(driveTrain);
     
     driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,leftJoystick,rightJoystick, controller2));
     climb.setDefaultCommand(new SkyHookCommand(climb, rightJoystick, controller2));
@@ -113,7 +114,8 @@ public class RobotContainer {
 
     configureButtonBindings();
 
-    qChooser.setDefaultOption("Regular Auton", regular);
+    qChooser.setDefaultOption("code for youtube", tv);
+    qChooser.addOption("Regular Auton", regular);
     qChooser.addOption("Short Auton (for the wall)", shortauton);
     qChooser.addOption("3 Balls Auton", threeball);
 

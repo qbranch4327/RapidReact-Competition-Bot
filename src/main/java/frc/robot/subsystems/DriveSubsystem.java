@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class AMDB5Subsystem extends SubsystemBase {
+public class DriveSubsystem extends SubsystemBase {
     private final int CYCLES_PER_REVOLUTION = 2048;
     private final double CIRCUMFERENCE = 6 * 3.14159;
 
@@ -31,7 +31,7 @@ public class AMDB5Subsystem extends SubsystemBase {
 
     private final double deadzone = 0.0;
 
-    public AMDB5Subsystem() {
+    public DriveSubsystem() {
         this.rightEncoder.setMaxPeriod(1);
         this.leftEncoder.setMaxPeriod(1);
 

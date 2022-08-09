@@ -81,7 +81,7 @@ public class GoldenPP7Command extends CommandBase {
         }
         
         if (controller2.getLeftY() > 0.09){
-            shooter.conveyor1On(false);
+            shooter.conveyor1On();
         }
         else{
             shooter.conveyor1Off();

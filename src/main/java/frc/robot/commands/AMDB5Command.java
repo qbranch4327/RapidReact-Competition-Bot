@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.AMDB5Subsystem;
+import frc.robot.subsystems.DriveSubsystem;
 
 import java.util.ArrayList;
 
@@ -14,10 +14,10 @@ import com.ctre.phoenix.music.Orchestra;
 public class AMDB5Command extends CommandBase {
     private final Joystick leftJoystick;
     private final Joystick rightJoystick;
-    private final AMDB5Subsystem drivetrain;
+    private final DriveSubsystem drivetrain;
     private final XboxController controller;
 
-    public AMDB5Command(AMDB5Subsystem drivetrain, Joystick leftJoystick, Joystick rightJoystick, XboxController controller){
+    public AMDB5Command(DriveSubsystem drivetrain, Joystick leftJoystick, Joystick rightJoystick, XboxController controller){
         this.drivetrain = drivetrain;
         this.leftJoystick = leftJoystick;
         this.rightJoystick = rightJoystick;
