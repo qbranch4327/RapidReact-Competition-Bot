@@ -6,9 +6,9 @@ import frc.robot.subsystems.*;
 
 public class Q3Commands extends CommandBase{
     private final DriveSubsystem drive;
-    private final GoldenPP7Subsystem shooter;
-    private final MoonRakerSubsystem vision;
-    private final ShakenNotStirredSubsystem intake;
+    private final ShooterSubsystem shooter;
+    private final VisionSubsystem vision;
+    private final IntakeSubsystem intake;
 
     private final double distance1;
     private final double distance2;
@@ -36,7 +36,7 @@ public class Q3Commands extends CommandBase{
     private final double drive4startTime;
     private final double drive4endTime;
 
-    public Q3Commands(DriveSubsystem drive, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter, ShakenNotStirredSubsystem intake, 
+    public Q3Commands(DriveSubsystem drive, VisionSubsystem vision, ShooterSubsystem shooter, IntakeSubsystem intake, 
     double distance1, double distance2, double distance3, double distance4, double intialstart, double intakedurationTime, 
     double intake1startTime, double conveyor1startTime, double shooter1endTime, double drive2startTime, double intake2startTime, 
     double shooter2startTime, double conveyor2startTime, double shooter2endTime, double drive3startTime, double drive4startTime, 

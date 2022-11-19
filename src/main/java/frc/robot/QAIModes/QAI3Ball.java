@@ -25,7 +25,7 @@ public class QAI3Ball extends SequentialCommandGroup{
     private final double drive4endTime = 15;
 
 
-    public QAI3Ball(DriveSubsystem drive, GoldenPP7Subsystem shooter, MoonRakerSubsystem vision, ShakenNotStirredSubsystem intake){
+    public QAI3Ball(DriveSubsystem drive, ShooterSubsystem shooter, VisionSubsystem vision, IntakeSubsystem intake){
         addCommands(
             new Q3Commands(drive, vision, shooter, intake, distance1, distance2, distance3, distance4, intialstart, intakedurationTime, intake1startTime, conveyor1startTime, shooter1endTime, drive2startTime, intake2startTime, shooter2startTime, conveyor2startTime, shooter2endTime, drive3startTime, drive4startTime, drive4endTime));
     }

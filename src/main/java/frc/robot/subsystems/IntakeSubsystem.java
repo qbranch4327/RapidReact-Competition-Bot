@@ -5,7 +5,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ShakenNotStirredSubsystem extends SubsystemBase{
+public class IntakeSubsystem extends SubsystemBase{
     private final CANSparkMax   armMotor = new CANSparkMax(16, MotorType.kBrushless);
     private final CANSparkMax wheelMotor = new CANSparkMax(15, MotorType.kBrushless);
     private final double armSpeed = 1; 

@@ -5,12 +5,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Servo;
 
-public class GoldenPP7Subsystem extends SubsystemBase{
+public class ShooterSubsystem extends SubsystemBase{
     private TalonFX turret = new TalonFX(5);
     private TalonSRX shooter1 = new TalonSRX(6);
     private TalonSRX shooter2 = new TalonSRX(7);
@@ -19,7 +18,7 @@ public class GoldenPP7Subsystem extends SubsystemBase{
     private CANSparkMax conveyor2 = new CANSparkMax(17, MotorType.kBrushless);
     private final Encoder shooterEncoder = new Encoder(4, 5);
         
-    public GoldenPP7Subsystem(){
+    public ShooterSubsystem(){
     }
 
     public void conveyor1On(){

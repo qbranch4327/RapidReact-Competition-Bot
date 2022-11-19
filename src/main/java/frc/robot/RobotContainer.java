@@ -34,10 +34,10 @@ public class RobotContainer {
   // private final MusicSubsystem musicSubsystem6;
 
   private final DriveSubsystem driveTrain;
-  private final SkyHookSubsystem climb;
-  private final ShakenNotStirredSubsystem intake;
-  private final GoldenPP7Subsystem shooter;
-  private final MoonRakerSubsystem vision;
+  private final ClimbSubsystem climb;
+  private final IntakeSubsystem intake;
+  private final ShooterSubsystem shooter;
+  private final VisionSubsystem vision;
   
   //private final Command m_autoCommand;
   SendableChooser<Command> qChooser = new SendableChooser<>();
@@ -97,20 +97,20 @@ public class RobotContainer {
 
 
     this.driveTrain = new DriveSubsystem();
-    this.climb = new SkyHookSubsystem();
-    this.intake = new ShakenNotStirredSubsystem();
-    this.vision = new MoonRakerSubsystem();
-    this.shooter = new GoldenPP7Subsystem();
+    this.climb = new ClimbSubsystem();
+    this.intake = new IntakeSubsystem();
+    this.vision = new VisionSubsystem();
+    this.shooter = new ShooterSubsystem();
     
     Command regular = new QAIRegular(driveTrain, intake, vision, shooter);
     Command shortauton = new QAIShort(driveTrain, intake, vision, shooter);
     Command threeball = new QAI3Ball(driveTrain, shooter, vision, intake);
     Command tv = new Tv(driveTrain);
     
-    driveTrain.setDefaultCommand(new AMDB5Command(driveTrain,leftJoystick,rightJoystick, controller2));
-    climb.setDefaultCommand(new SkyHookCommand(climb, rightJoystick, controller2));
-    intake.setDefaultCommand(new ShakenNotStirredCommand(intake, leftJoystick, rightJoystick, controller2));
-    shooter.setDefaultCommand(new GoldenPP7Command(shooter, leftJoystick, rightJoystick, controller2, vision));
+    driveTrain.setDefaultCommand(new DriveCommand(driveTrain,leftJoystick,rightJoystick, controller2));
+    climb.setDefaultCommand(new ClimbCommand(climb, rightJoystick, controller2));
+    intake.setDefaultCommand(new IntakeCommand(intake, leftJoystick, rightJoystick, controller2));
+    shooter.setDefaultCommand(new ShooterCommand(shooter, leftJoystick, rightJoystick, controller2, vision));
 
     configureButtonBindings();
 

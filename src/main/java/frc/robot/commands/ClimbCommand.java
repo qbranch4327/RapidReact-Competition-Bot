@@ -1,16 +1,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.SkyHookSubsystem;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 
-public class SkyHookCommand extends CommandBase {
+public class ClimbCommand extends CommandBase {
     private final Joystick rightJoystick;
-    private final SkyHookSubsystem climber;
+    private final ClimbSubsystem climber;
     private final XboxController controller;
 
-    public SkyHookCommand(SkyHookSubsystem climber, Joystick rightJoystick, XboxController controller2) {
+    public ClimbCommand(ClimbSubsystem climber, Joystick rightJoystick, XboxController controller2) {
         this.climber = climber;
         this.rightJoystick = rightJoystick;
         this.controller = controller2;

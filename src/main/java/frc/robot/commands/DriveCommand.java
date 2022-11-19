@@ -2,26 +2,18 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
-import java.util.ArrayList;
-
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.music.Orchestra;
-
-public class AMDB5Command extends CommandBase {
+public class DriveCommand extends CommandBase {
     private final Joystick leftJoystick;
     private final Joystick rightJoystick;
     private final DriveSubsystem drivetrain;
-    private final XboxController controller;
 
-    public AMDB5Command(DriveSubsystem drivetrain, Joystick leftJoystick, Joystick rightJoystick, XboxController controller){
+    public DriveCommand(DriveSubsystem drivetrain, Joystick leftJoystick, Joystick rightJoystick, XboxController controller){
         this.drivetrain = drivetrain;
         this.leftJoystick = leftJoystick;
         this.rightJoystick = rightJoystick;
-        this.controller = controller;
         addRequirements(drivetrain);
     }
 

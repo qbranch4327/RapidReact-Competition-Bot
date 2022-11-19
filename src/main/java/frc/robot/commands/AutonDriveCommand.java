@@ -2,20 +2,19 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.GoldenPP7Subsystem;
-import frc.robot.subsystems.MoonRakerSubsystem;
+import frc.robot.subsystems.*;
 
-public class QDriveCommand extends CommandBase {
+public class AutonDriveCommand extends CommandBase {
     private final DriveSubsystem drive;
     private final double distance;
     private final double speed;
     private boolean backward = false;
     private double leftDistance;
     private double rightDistance;
-    private final GoldenPP7Subsystem shooter;
-    private final MoonRakerSubsystem vision;
+    private final ShooterSubsystem shooter;
+    private final VisionSubsystem vision;
 
-    public QDriveCommand(DriveSubsystem drive, double distance, double speed, GoldenPP7Subsystem shooter, MoonRakerSubsystem vision) {
+    public AutonDriveCommand(DriveSubsystem drive, double distance, double speed, ShooterSubsystem shooter, VisionSubsystem vision) {
         this.drive = drive;
         this.distance = -distance;
         this.speed = speed;

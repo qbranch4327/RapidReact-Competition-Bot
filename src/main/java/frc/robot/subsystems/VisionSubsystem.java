@@ -6,7 +6,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class MoonRakerSubsystem extends SubsystemBase {
+public class VisionSubsystem extends SubsystemBase {
     private final double h1 = 32.5;
     private final double h2 = 104;
     private final double a1 = 43.6;
@@ -16,7 +16,7 @@ public class MoonRakerSubsystem extends SubsystemBase {
     private NetworkTableEntry tx;
     private NetworkTableEntry ty;
 
-    public MoonRakerSubsystem() {
+    public VisionSubsystem() {
     }
 
     public void publishToDashboard() {

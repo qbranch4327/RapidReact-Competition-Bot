@@ -9,39 +9,31 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick; 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.GoldenPP7Subsystem;
-import frc.robot.subsystems.MoonRakerSubsystem;
+import frc.robot.subsystems.*;
 
-public class GoldenPP7Command extends CommandBase {
-    private final Joystick leftJoystick;
-    private final Joystick rightJoystick;
+public class ShooterCommand extends CommandBase {
     private final XboxController controller2;
-    private final GoldenPP7Subsystem shooter;
-    private MoonRakerSubsystem vision = null;
+    private final ShooterSubsystem shooter;
+    private VisionSubsystem vision = null;
 
     private final double d1 = 66;
     private final double d2 = 88;
     private Orchestra player;
     private double velocity = 1100;
 
-    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick leftJoystick, Joystick rightJoystick, XboxController controller2, MoonRakerSubsystem vision){
+    public ShooterCommand(ShooterSubsystem shooter, Joystick leftJoystick, Joystick rightJoystick, XboxController controller2, VisionSubsystem vision){
         this.shooter = shooter;
-        this.leftJoystick = leftJoystick;
-        this.rightJoystick = rightJoystick;
         this.controller2 = controller2;
         this.vision = vision;
 
-        var speaker = shooter.speaker1();
         player = new Orchestra();
         player.addInstrument(shooter.speaker1());
         addRequirements(shooter);
         addRequirements(vision);
     }
 
-    public GoldenPP7Command(GoldenPP7Subsystem shooter, Joystick leftJoystick, Joystick rightJoystick, XboxController controller2){
+    public ShooterCommand(ShooterSubsystem shooter, Joystick leftJoystick, Joystick rightJoystick, XboxController controller2){
         this.shooter = shooter;
-        this.leftJoystick = leftJoystick;
-        this.rightJoystick = rightJoystick;
         this.controller2 = controller2;
         addRequirements(shooter);
     }

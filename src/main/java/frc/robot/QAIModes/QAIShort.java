@@ -17,13 +17,13 @@ public class QAIShort extends SequentialCommandGroup {
      * @param drive The drive subsystem this command will run on
      * @param hatch The hatch subsystem this command will run on
      */
-    public QAIShort(DriveSubsystem drive, ShakenNotStirredSubsystem intake, MoonRakerSubsystem vision, GoldenPP7Subsystem shooter) {
+    public QAIShort(DriveSubsystem drive, IntakeSubsystem intake, VisionSubsystem vision, ShooterSubsystem shooter) {
         addCommands(
-            new QGoldenPP7Command(shooter, 4, 2),
-            new QDriveCommand(drive, 14, .3, shooter, vision),
-            new QShakenNotStirredCommand(intake, 2.5),
-            new QDriveCommand(drive, -28.75, .2, shooter, vision),
-            new QGoldenPP7Command(shooter, 5, 3)
+            new AutonShooterCommand(shooter, 4, 2),
+            new AutonDriveCommand(drive, 14, .3, shooter, vision),
+            new AutonIntakeCommand(intake, 2.5),
+            new AutonDriveCommand(drive, -28.75, .2, shooter, vision),
+            new AutonShooterCommand(shooter, 5, 3)
         );
     }
 }
